@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACR Contrast Media Master Suite 2026</title>
+<style>
+:root {
+  --bg:#0a0e17;--surface:#111827;--surface2:#1a2234;--surface3:#1e2d45;
+  --border:#243050;--accent:#3b82f6;--accent2:#06b6d4;--accent3:#8b5cf6;
+  --gold:#f59e0b;--green:#10b981;--red:#ef4444;--orange:#f97316;
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+.top-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
+.top-bar h1{font-size:.95rem;font-weight:700;color:var(--accent2);letter-spacing:.5px}
+.xp-bar-wrap{display:flex;align-items:center;gap:8px;font-size:.78rem}
+.xp-bar-bg{width:110px;height:6px;background:var(--surface3);border-radius:3px;overflow:hidden}
+.xp-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;transition:width .5s}
+.rank-badge{background:linear-gradient(135deg,var(--accent3),var(--accent));color:#fff;font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:10px}
+.streak-badge{color:var(--gold);font-weight:700;font-size:.83rem}
+.tab-nav{background:var(--surface);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-btn{padding:12px 16px;background:none;border:none;border-bottom:3px solid transparent;color:var(--text2);cursor:pointer;font-size:.8rem;font-weight:600;white-space:nowrap;transition:all .2s;letter-spacing:.3px}
+.tab-btn:hover{color:var(--text);background:var(--surface2)}
+.tab-btn.active{color:var(--accent2);border-bottom-color:var(--accent2);background:var(--surface2)}
+.content{display:none;padding:22px 18px;max-width:900px;margin:0 auto}
+.content.active{display:block}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:14px}
+.card-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.card-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.card-title{font-size:.92rem;font-weight:700;color:var(--text)}
+.card-subtitle{font-size:.72rem;color:var(--text2)}
+.chapter-btn{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;margin-bottom:7px;color:var(--text);font-size:.85rem;font-weight:600;transition:all .2s;text-align:left}
+.chapter-btn:hover{background:var(--surface3);border-color:var(--accent)}
+.chapter-btn.open{border-color:var(--accent2);background:var(--surface3)}
+.chapter-arrow{transition:transform .2s;color:var(--text2);font-size:.75rem}
+.chapter-btn.open .chapter-arrow{transform:rotate(180deg)}
+.chapter-body{display:none;background:var(--surface2);border:1px solid var(--border);border-top:none;border-radius:0 0 10px 10px;padding:16px;margin-top:-7px;margin-bottom:7px;font-size:.83rem;line-height:1.75;color:var(--text2)}
+.chapter-body.open{display:block}
+.kf{background:var(--surface3);border-left:3px solid var(--accent2);border-radius:0 8px 8px 0;padding:9px 13px;margin:9px 0;font-size:.81rem}
+.kf.warning{border-left-color:var(--orange)}
+.kf.danger{border-left-color:var(--red)}
+.kf.success{border-left-color:var(--green)}
+.kf.gold{border-left-color:var(--gold)}
+.kf strong{color:var(--text);display:block;margin-bottom:3px}
+.acr-table{width:100%;border-collapse:collapse;font-size:.78rem;margin:10px 0}
+.acr-table th{background:var(--surface3);color:var(--accent2);padding:7px 11px;text-align:left;font-weight:700;font-size:.73rem;letter-spacing:.5px;border-bottom:1px solid var(--border)}
+.acr-table td{padding:7px 11px;border-bottom:1px solid var(--border);color:var(--text2)}
+.acr-table tr:last-child td{border-bottom:none}
+.acr-table tr:hover td{background:var(--surface3);color:var(--text)}
+.quiz-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.level-toggle{display:flex;gap:3px;background:var(--surface3);border-radius:8px;padding:3px}
+.level-btn{padding:5px 13px;border-radius:6px;border:none;cursor:pointer;font-size:.76rem;font-weight:600;background:transparent;color:var(--text2);transition:all .2s}
+.level-btn.active{background:var(--accent);color:#fff}
+.question-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px}
+.question-text{font-size:.93rem;color:var(--text);margin-bottom:16px;line-height:1.6}
+.q-meta{font-size:.7rem;color:var(--text3);margin-bottom:12px;display:flex;gap:10px;flex-wrap:wrap}
+.q-badge{background:var(--surface3);border-radius:4px;padding:2px 7px;color:var(--accent2);font-weight:600}
+.option-btn{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:11px 14px;text-align:left;color:var(--text);cursor:pointer;font-size:.83rem;margin-bottom:7px;transition:all .2s;display:flex;align-items:flex-start;gap:9px}
+.option-btn:hover{background:var(--surface3);border-color:var(--accent)}
+.option-btn.correct{background:rgba(16,185,129,.15);border-color:var(--green);color:var(--green)}
+.option-btn.wrong{background:rgba(239,68,68,.15);border-color:var(--red);color:var(--red)}
+.option-btn.reveal-correct{background:rgba(16,185,129,.08);border-color:var(--green)}
+.option-btn:disabled{cursor:not-allowed}
+.option-letter{background:var(--surface3);border-radius:4px;width:22px;height:22px;min-width:22px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--text2)}
+.explanation{background:var(--surface3);border-left:3px solid var(--accent2);border-radius:0 8px 8px 0;padding:11px 14px;margin-top:12px;font-size:.81rem;color:var(--text2);display:none}
+.explanation.show{display:block}
+.explanation strong{color:var(--accent2)}
+.quiz-controls{display:flex;gap:8px;margin-top:14px;align-items:center;flex-wrap:wrap}
+.btn{padding:7px 16px;border-radius:8px;border:none;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#2563eb}
+.btn-secondary{background:var(--surface3);color:var(--text)}
+.btn-secondary:hover{background:var(--surface2)}
+.q-counter{font-size:.77rem;color:var(--text2);margin-left:auto}
+.score-display{font-size:.8rem;color:var(--gold);font-weight:700}
+.progress-wrap{margin-bottom:12px}
+.progress-label{display:flex;justify-content:space-between;font-size:.72rem;color:var(--text2);margin-bottom:3px}
+.progress-bg{height:4px;background:var(--surface3);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;transition:width .3s}
+.flashcard{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:32px 24px;text-align:center;cursor:pointer;min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:all .2s;margin-bottom:12px}
+.flashcard:hover{border-color:var(--accent)}
+.flashcard-front{font-size:.97rem;color:var(--text);line-height:1.55}
+.flashcard-back{display:none;font-size:.85rem;color:var(--accent2);line-height:1.65;white-space:pre-line}
+.flashcard.flipped .flashcard-front{display:none}
+.flashcard.flipped .flashcard-back{display:block}
+.flip-hint{font-size:.7rem;color:var(--text3);margin-top:10px}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.stat-card{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:13px;text-align:center}
+.stat-value{font-size:1.55rem;font-weight:800;color:var(--accent2)}
+.stat-label{font-size:.7rem;color:var(--text2);margin-top:2px}
+h2{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+h3{font-size:.87rem;font-weight:700;color:var(--accent2);margin:11px 0 7px}
+h2 .pill{font-size:.63rem;background:var(--accent3);color:#fff;padding:2px 7px;border-radius:8px;font-weight:600}
+ul{padding-left:16px}
+li{margin-bottom:4px;font-size:.82rem;color:var(--text2)}
+p{font-size:.82rem;color:var(--text2);margin-bottom:7px}
+ol{padding-left:16px}
+ol li{margin-bottom:5px;font-size:.82rem;color:var(--text2)}
+.achievement{display:flex;align-items:center;gap:11px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;margin-bottom:7px}
+.ach-icon{font-size:1.3rem}
+.ach-name{font-size:.83rem;font-weight:700;color:var(--text)}
+.ach-desc{font-size:.71rem;color:var(--text2)}
+.ach-locked{opacity:.38}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--green);color:#fff;padding:9px 18px;border-radius:18px;font-size:.82rem;font-weight:600;z-index:999;transition:transform .3s;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.xp{background:var(--accent)}
+.toast.error{background:var(--red)}
+.cat-filter{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.cat-btn{padding:4px 11px;border-radius:6px;border:1px solid var(--border);background:var(--surface3);color:var(--text2);cursor:pointer;font-size:.72rem;font-weight:600;transition:all .2s}
+.cat-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.formula{background:var(--surface3);border:1px solid var(--border);border-radius:8px;padding:13px 14px;font-family:'Courier New',monospace;font-size:.79rem;color:var(--accent2);margin:9px 0;line-height:1.8}
+.tag{display:inline-block;background:var(--surface3);border-radius:4px;padding:1px 7px;font-size:.68rem;font-weight:600;margin:2px}
+.tag.blue{color:var(--accent)}.tag.cyan{color:var(--accent2)}.tag.purple{color:var(--accent3)}.tag.gold{color:var(--gold)}.tag.green{color:var(--green)}.tag.red{color:var(--red)}
+@media(max-width:600px){.stat-grid{grid-template-columns:repeat(2,1fr)}.top-bar{padding:0 10px}.content{padding:14px 10px}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <h1>🩻 ACR Contrast Media 2026</h1>
+  <div class="xp-bar-wrap">
+    <span class="streak-badge" id="streakBadge">🔥 0</span>
+    <div class="xp-bar-bg"><div class="xp-bar-fill" id="xpFill" style="width:0%"></div></div>
+    <span id="xpLabel" style="font-size:.72rem;color:var(--text2)">0 XP</span>
+    <span class="rank-badge" id="rankBadge">Intern</span>
+  </div>
+</div>
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('dashboard',this)">📊 Dashboard</button>
+  <button class="tab-btn" onclick="showTab('chapters',this)">📖 Chapters</button>
+  <button class="tab-btn" onclick="showTab('quiz',this)">🧠 Quiz</button>
+  <button class="tab-btn" onclick="showTab('flashcards',this)">🃏 Flashcards</button>
+  <button class="tab-btn" onclick="showTab('quickref',this)">⚡ Quick Ref</button>
+  <button class="tab-btn" onclick="showTab('achievements',this)">🏆 Badges</button>
+</div>
+
+<!-- DASHBOARD -->
+<div id="tab-dashboard" class="content active">
+<h2>📊 Dashboard <span class="pill">ACR 2026</span></h2>
+<div class="stat-grid">
+  <div class="stat-card"><div class="stat-value" id="statXP">0</div><div class="stat-label">Total XP</div></div>
+  <div class="stat-card"><div class="stat-value" id="statCorrect">0</div><div class="stat-label">Correct</div></div>
+  <div class="stat-card"><div class="stat-value" id="statStreak">0</div><div class="stat-label">Best Streak</div></div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon" style="background:rgba(59,130,246,.2)">📖</div>
+    <div><div class="card-title">ACR Manual on Contrast Media 2026</div><div class="card-subtitle">20 Chapters · 126 Pages · 30 FY + 30 Board Questions · 30 Flashcards</div></div>
+  </div>
+  <p>Complete 2026 ACR Manual — patient selection, premedication, injection safety, adverse reactions, renal concerns, gadolinium, NSF, pediatrics, GI contrast, ultrasound agents, pregnancy, breastfeeding, and full treatment tables. Fully gamified with XP, ranks, streaks, and achievements. Easily expandable to additional chapters.</p>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">
+    <span class="tag blue">Iodinated CM</span><span class="tag cyan">Gadolinium-Based</span><span class="tag purple">Ultrasound CM</span>
+    <span class="tag gold">Premedication</span><span class="tag green">Renal Safety</span><span class="tag red">NSF</span>
+    <span class="tag blue">Pediatric</span><span class="tag cyan">GI Contrast</span><span class="tag purple">Pregnancy</span>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon" style="background:rgba(245,158,11,.2)">🏅</div>
+    <div><div class="card-title">Rank System</div><div class="card-subtitle">Answer questions to earn XP and climb ranks</div></div>
+  </div>
+  <table class="acr-table">
+    <tr><th>Rank</th><th>XP Required</th><th>Unlocks</th></tr>
+    <tr><td>🩺 Intern</td><td>0</td><td>All content</td></tr>
+    <tr><td>📋 R1 Resident</td><td>100</td><td>FY mastery</td></tr>
+    <tr><td>📷 R2 Resident</td><td>300</td><td>Pattern recognition</td></tr>
+    <tr><td>🔬 R3 Resident</td><td>600</td><td>You = this app's author</td></tr>
+    <tr><td>💊 Fellow</td><td>1000</td><td>Advanced reasoning</td></tr>
+    <tr><td>🏥 Attending</td><td>1500</td><td>Clinical authority</td></tr>
+    <tr><td>🩻 Contrast Expert</td><td>2500</td><td>Boards domination</td></tr>
+  </table>
+</div>
+<div class="card">
+  <div class="card-header">
+    <div class="card-icon" style="background:rgba(16,185,129,.2)">📈</div>
+    <div><div class="card-title">Chapter Coverage</div></div>
+  </div>
+  <div id="progressBars"></div>
+</div>
+</div>
+
+<!-- CHAPTERS -->
+<div id="tab-chapters" class="content">
+<h2>📖 All Chapters</h2>
+
+<button class="chapter-btn" onclick="toggleCh(this)"><span>Ch 1–3 · Introduction &amp; Purpose <span class="tag cyan">Foundations</span></span><span class="chapter-arrow">▼</span></button>
+<div class="chapter-body">
+<p>The ACR Manual on Contrast Media is published as a web-based document by the ACR Committee on Drugs and Contrast Media. Its primary purpose: assist radiologists in recognizing and managing risks inherent in contrast media use.</p>
+<div class="kf"><strong>Core Goals Before Any Contrast Administration</strong><ul><li>Assess patient risk vs potential benefit</li><li>Consider imaging alternatives providing equal/better diagnostic info</li><li>Confirm valid clinical indication</li><li>Informed consent may be waived for IV contrast per state law and institutional policy</li></ul></div>
+<div class="kf success"><strong>Adverse Event Spectrum:</strong> Ranges from minor physiological disturbances to rare life-threatening events. Pre-arrangement of response planning, trained personnel, equipment, and medications is essential BEFORE any contrast-enhanced study.</div>
+<div class="kf gold"><strong>Usage Note:</strong> "Low-osmolality" in this manual = both low-osmolality (~2× serum) AND iso-osmolality contrast media, unless otherwise specified. Manual focuses on iodinated contrast unless stated otherwise.</div>
+</div>
+
+<button class="chapter-btn" onclick="toggleCh(this)"><span>Ch 4 · Patient Selection &amp; Preparation <span class="tag gold">High-Yield ★</span></span><span class="chapter-arrow">▼</span></button>
+<div class="chapter-body">
+<h3>Reaction Rates — Memorize These</h3>
+<table class="acr-table">
+<tr><th>Agent Type</th><th>Aggregate Rate</th><th>Severe Rate</th></tr>
+<tr><td>Iodinated CM (LOCM)</td><td>0.6%</td><td>0.04% (4/10,000)</td></tr>
+<tr><td>Gadolinium-Based CM</td><td>0.01–0.22%</td><td>0.008%</td></tr>
+</table>
+<h3>Risk Factors — Know What Matters</h3>
+<div class="kf danger"><strong>Greatest Risk: Prior allergic-like reaction to SAME class of CM</strong><br>~5× increased risk for iodinated CM; ~8× for GBCM. Recurrence rate in non-premedicated high-risk patients: 10–35%.</div>
+<div class="kf warning"><strong>Modest 2–3× Increase:</strong> Unrelated allergies (including shellfish, Betadine — NOT greater than other allergies), asthma<br>Do NOT premedicate or restrict CM solely for shellfish, Betadine, or asthma alone</div>
+<div class="kf"><strong>No Cross-Reactivity Between Classes:</strong> Prior GBCM reaction ≠ increased iodinated CM risk (and vice versa) beyond any unrelated allergy</div>
+<h3>Special Conditions — Action Required or Not?</h3>
+<table class="acr-table">
+<tr><th>Condition</th><th>Action</th></tr>
+<tr><td>Shellfish / Betadine allergy</td><td>No special precaution; no restriction</td></tr>
+<tr><td>Asthma</td><td>No premedication/restriction solely for asthma</td></tr>
+<tr><td>Beta-blockers</td><td>Do NOT discontinue before CM</td></tr>
+<tr><td>Sickle cell disease</td><td>No restriction with modern LOCM or GBCM</td></tr>
+<tr><td>Pheochromocytoma</td><td>IV: no restriction. Intra-arterial into adrenal/renal: unknown risk</td></tr>
+<tr><td>Myasthenia gravis</td><td>Controversial; one study: 6.3% exacerbation within 24h with LOCM vs 0.6% without (p=0.01)</td></tr>
+<tr><td>Hyperthyroidism</td><td>Generally safe; AVOID in acute thyroid storm; RAI washout: 3–4 wks (hyperthyroid), 6 wks (hypothyroid)</td></tr>
+<tr><td>Anxiety</td><td>Reassurance before injection may reduce mild reactions</td></tr>
+<tr><td>Multiple myeloma</td><td>NOT a risk factor for CA-AKI; no special restriction</td></tr>
+</table>
+<h3>Premedication — Indications (May Consider)</h3>
+<div class="kf gold"><strong>Premedicate when: prior allergic-like OR unknown-type reaction to the SAME class of CM</strong><br>Oral (12–13h) preferred for outpatients. IV accelerated (≥4–5h) when urgent.</div>
+<div class="kf danger"><strong>Premedication Limitations</strong><ul><li>NOT confirmed to prevent moderate/severe reactions in high-risk patients</li><li>NNT to prevent 1 reaction (any severity): 69; 1 severe reaction: 569; 1 fatal: 50,000</li><li>Breakthrough reaction rate despite premedication: ~2.1%</li><li>13h inpatient premedication: +25h LOS, +25h to CT, increased hospital-acquired infections</li></ul></div>
+<div class="kf warning"><strong>Breakthrough Reactions:</strong> ~81% are similar severity to index reaction. Prior mild reaction → &lt;1% risk of severe breakthrough. Prior moderate/severe breakthrough = highest risk of repeat moderate/severe.</div>
+<h3>Premedication Regimens</h3>
+<div class="formula">ELECTIVE ORAL (12–13h):
+Option 1: Prednisone 50mg PO at 13h, 7h, 1h before + Diphenhydramine 50mg 1h before
+Option 2: Methylprednisolone 32mg PO at 12h and 2h before ± Diphenhydramine 50mg
+
+ACCELERATED IV (≥4–5h — HAS evidence):
+Option 1: Methylprednisolone 40mg IV OR Hydrocortisone 200mg IV q4h + Diphenhydramine 50mg IV 1h before
+Option 2 (MPred allergy): Dexamethasone 7.5mg IV q4h + Diphenhydramine 50mg IV 1h before
+
+EMERGENT (&lt;1–4h — NO evidence of efficacy, last resort):
+Single dose MPred 40mg IV + Diphenhydramine 50mg IV 1h before</div>
+<div class="kf"><strong>Switching CM agent within same class</strong> may reduce reaction risk. Combining agent switch + premedication has greatest protective effect. Many patients don't know which specific agent caused prior reaction — investigate via EMR if possible.</div>
+<div class="kf warning"><strong>Skin Testing NOT Recommended:</strong> Not useful for predicting reactions; test injections may actually INCREASE risk of severe reactions</div>
+</div>
+
+<button class="chapter-btn" onclick="toggleCh(this)"><span>Ch 5 · Fasting Before Contrast <span class="tag green">Key Rule</span></span><span class="chapter-arrow">▼</span></button>
+<div class="chapter-body">
+<div class="kf success"><strong>Bottom Line: Fasting NOT required for routine IV contrast administration</strong><ul><li>Modern nonionic LOCM and GBCM have very low nausea/vomiting rates vs old ionic HOCM</li><li>2012 meta-analysis (2,001 patients, 13 studies): no aspiration pneumonia despite heterogeneous (including no) fasting practices</li><li>GBCM: 0.03% mild adverse events (nausea, vomiting, rash) in 158,439 injections</li><li>Randomized trial (Neeman et al 2020): no preventive effect of fasting on nausea, vomiting, or aspiration</li></ul></div>
+<div class="kf warning"><strong>Exception:</strong> Conscious sedation or anesthesia → follow ASA Preoperative Fasting Guidelines</div>
+<p>Pre-procedure fasting has negative effects: scheduling limitations, hypoglycemic risk in diabetics, general discomfort. Benefits do not outweigh harms for routine IV contrast.</p>
+</div>
+
+<button class="chapter-btn" onclick="toggleCh(this)"><span>Ch 6 · Safe Injection of Contrast Media <span class="tag cyan">Technical</span></span><span class="chapter-arrow">▼</span></button>
+<div class="chapter-body">
+<h3>Power Injector Technique</h3>
+<table class="acr-table">
+<tr><th>Catheter Gauge</th><th>Recommendation</th></tr>
+<tr><td>22-gauge</td><td>Can tolerate up to 5 mL/sec; prefer lower rates at peripheral sites</td></tr>
+<tr><td>20-gauge or larger</td><td>Preferred for rates ≥3 mL/sec</td></tr>
+<tr><td>Hand/wrist/ankle sites</td><td>Reduce to 1–2 mL/sec if feasible</td></tr>
+<tr><td>Preferred site</td><td>Antecubital or large forearm vein</td></tr>
+</table>
+<div class="kf"><strong>Use plastic angiocatheters — NOT metal needles — for power injection</strong><br>Confirm IV position: blood backflow aspiration AND saline test flush before contrast<br>Maintain communication with patient during injection (intercom/TV system)</div>
+<div class="kf gold"><strong>CVCs / PICCs — Power Injection Rules:</strong><br>ONLY power inject through catheters CERTIFIED for power injection by manufacturer. Note flow-rate limit. 9.5–10F CVCs: up to 2.5 mL/sec shown safe. Small-bore peripheral-access CVCs: do NOT power inject unless manufacturer-rated. PICC migration reported after pressure injection.</div>
+<h3>Air Embolism</h3>
+<div class="kf warning"><strong>Treatment:</strong> 100% O₂ + LEFT lateral decubitus (left side DOWN — traps air in RV apex). Hyperbaric O₂ for severe. CPR if cardiac arrest.<br>CT appearance: air bubbles/air-fluid levels in intrathoracic veins, main pulmonary artery, or right ventricle.<br>Symptoms: dyspnea, cough, chest pain, pulmonary edema, tachycardia, hypotension, neurologic deficits.</div>
+<h3>Intra-Osseous (IO) Injection</h3>
+<p>Used in critically ill patients without IV access. Humeral placement preferred (higher flow rates vs tibial). High pressures needed due to intramedullary compartmental pressures. Case reports: up to 5 mL/sec, 300 PSI max. Require local anesthetic: lidocaine 40mg 2% (adult), 0.5 mg/kg (pediatric) before infusion.</p>
+</div>
+
+<button class="chapter-btn" onclick="toggleCh(this)"><span>Ch 7 · Extravasation — 2022 Evidence-Based Update <span class="tag red">Evidence-Based</span></span><span class="chapter-arrow">▼</span></button>
+<div class="chapter-body">
+<div class="kf"><strong>Incidence:</strong> 0.1–1.2% of CT power injections. Most extravasations resolve without complication. Severe injury (compartment syndrome, skin ulceration/necrosis) occurs in &lt;&lt;1% of extravasations.</div>
+<h3>Risk Factors for Extravasation</h3>
+<ul><li>Patient: uncommunicative, altered circulation in extremity (PVD, Raynaud's, prior radiation, venous thrombosis, axillary lymph node dissection)</li><li>Injection site: hand, foot, ankle (higher risk); deep brachial US-guided access (0.3% overall vs 3.6% with US-guided)</li><li>Contrast: higher viscosity (iopamidol 370 &gt; iopamidol 300); 22-gauge catheter slightly higher rate than 20-gauge</li></ul>
+<div class="kf danger"><strong>Surgical Consult — Symptom-Based (NOT Volume-Based)</strong><ul><li>Severe or progressive pain/swelling</li><li>Decreased capillary refill</li><li>Change in sensation</li><li>Worsening active or passive ROM in elbow, wrist, or fingers</li><li>Skin ulceration or blistering</li></ul>Most common severe injury: compartment syndrome (can develop hours after extravasation)</div>
+<h3>Treatment</h3>
+<div class="kf success"><strong>What TO Do:</strong><ul><li>Elevate extremity above heart level</li><li>Cold compresses initially (empirical — vasoconstriction); warm compresses also acceptable</li><li>Observe, then discharge with clear instructions: seek care for worsening pain, paresthesia, decreased ROM, blistering/ulceration</li><li>Document all events; notify referring provider</li></ul></div>
+<div class="kf warning"><strong>What NOT To Do:</strong><ul><li>Do NOT routinely aspirate extravasated CM (rarely effective)</li><li>Do NOT inject corticosteroids or hyaluronidase (no proven benefit)</li><li>Do NOT use volume threshold alone to trigger surgical consult</li><li>Do NOT apply compression bandaging routinely</li></ul></div>
+<div class="kf"><strong>GBCM extravasation:</strong> ~1/6 as common as iodinated CM; lower tissue toxicity; small volumes → compartment syndrome extremely unlikely</div>
+</div>
+
+<button class="chapter-btn" onclick="toggleCh(this)"><span>Ch 8 · Allergic-Like &amp; Physiologic Reactions to Iodinated CM <span class="tag red">High-Yield ★</span></span><span class="chapter-arrow">▼</span></button>
+<div class="chapter-body">
+<div class="kf gold"><strong>Critical Distinction:</strong> Allergic-like reactions → consider future premedication. Physiologic reactions → NO premedication needed. Never conflate these categories.</div>
+<h3>Classification</h3>
+<table class="acr-table">
+<tr><th>Severity</th><th>Allergic-Like</th><th>Physiologic</th></tr>
+<tr><td>Mild</td><td>Urticaria, pruritus, rhinorrhea, mild bronchospasm</td><td>Nausea, warmth, flushing, headache, chills</td></tr>
+<tr><td>Moderate</td><td>Diffuse urticaria, bronchospasm, facial edema</td><td>Severe vomiting, hypertensive urgency, isolated chest pain</td></tr>
+<tr><td>Severe</td><td>Anaphylaxis, laryngeal edema, cardiovascular collapse, seizure</td><td>Vasovagal (hypotension + bradycardia), seizure, arrhythmia, pulmonary edema</td></tr>
+</table>
+<div class="kf danger"><strong>Nearly all life-threatening reactions occur within the FIRST 20 MINUTES after injection</strong></div>
+<h3>LOCM Incidence</h3>
+<ul>
+<li>Overall acute adverse events: 0.2–0.7%</li>
+<li>Allergic-like: 0.6% (Wang et al, n=84,928)</li>
+<li>Pediatric allergic-like: 0.18–0.46%</li>
+<li>Severe reactions: ~0.04% (4/10,000)</li>
+<li>Fatality: ~0.9/100,000 (meta-analysis Caro) or 1/170,000 (Katayama)</li>
+</ul>
+<h3>Pathogenesis</h3>
+<p>~90% involve direct histamine release from basophils/eosinophils. NOT classic IgE-mediated (IgE found in only ~4% of anaphylaxis cases). Multiple mechanisms: complement, kinin/contact system, nitric oxide, factor XII → bradykinin, pseudoantigen formation. Prior sensitization NOT required — explains first-exposure anaphylaxis.</p>
+<h3>Delayed Reactions (30 min – 1 week; peak 3h–2 days)</h3>
+<ul>
+<li>Incidence: 0.5–14%</li>
+<li>Most common: cutaneous (maculopapular exanthem, urticaria)</li>
+<li>Higher rate with iodixanol (iso-osmolar dimer) and IL-2 immunotherapy</li>
+<li>Rare severe: Stevens-Johnson syndrome (SLE patients at higher risk), toxic epidermal necrolysis</li>
+<li>Treatment: supportive (antihistamines, corticosteroids); premedication NOT specifically advocated for prior mild delayed reactions only</li>
+<li>Recurrence ~25%; possible T-cell–mediated mechanism</li>
+</ul>
+<h3>Other Rare Delayed Events</h3>
+<ul>
+<li>Iodide "mumps" (sialoadenopathy) — more common with renal dysfunction</li>
+<li>Acute polyarthropathy — more common with renal dysfunction</li>
+</ul>
+</div>
+
+<button class="chapter-btn" onclick="toggleCh(this)"><span>Ch 9 · Contrast Media Warming — 2026 Update <span class="tag cyan">Evidence-Based</span></span><span class="chapter-arrow">▼</span></button>
+<div class="chapter-body">
+<div class="kf"><strong>Key Principle:</strong> Viscosity is inversely related to temperature. Warming → reduced viscosity → improved flow, reduced injection pressure. Relationship is non-linear (turbulent flow through small-bore catheters — does not follow Poiseuille's law).</div>
+<h3>2026 Recommendations</h3>
+<table class="acr-table">
+<tr><th>Clinical Question</th><th>Recommendation</th><th>Strength</th></tr>
+<tr><td>Warm low-viscosity agents (iopamidol 300, ioversol 300, iohexol 300) to prevent extravasation?</td><td>NOT recommended</td><td>Limited</td></tr>
+<tr><td>Warm high-viscosity agents (iopamidol 370, iopromide 370, iohexol 350) to prevent extravasation?</td><td>May consider; some evidence; data inconsistent</td><td>Limited</td></tr>
+<tr><td>Warm to prevent hypersensitivity/physiologic reactions?</td><td>Low-viscosity: NOT recommended; High-viscosity: may consider</td><td>Limited</td></tr>
+<tr><td>Warm to improve patient comfort?</td><td>NOT routinely recommended</td><td>Limited</td></tr>
+<tr><td>Warm to improve image quality?</td><td>NOT routinely recommended</td><td>Limited</td></tr>
+</table>
+<div class="kf gold"><strong>Davenport 2012 (Key Study):</strong> Discontinuing warming of iopamidol 370 → extravasation rate nearly tripled (0.27% → 0.87%, p=0.05). Hypersensitivity+extravasation combined rate also tripled. No effect seen for iopamidol 300. No clinical outcome difference (most extravasations are minor).</div>
+<div class="kf"><strong>Nawras 2023 Meta-Analysis (307,329 injections):</strong> Warming of higher-viscosity CM → significantly lower hypersensitivity/physiologic reactions (OR 0.59, 95%CI 0.49–0.72). No significant benefit for lower-viscosity agents or for extravasation rates overall.</div>
+<h3>Logistics</h3>
+<p>Warming requires Joint Commission compliance: daily temperature log for each warmer + evidence of regular maintenance. Many institutions abandoned warming due to logistics burden and lack of clear clinical outcome benefit.</p>
+<div class="kf"><strong>Gadolinium warming:</strong> One study showed warmed gadoxetic acid (Eovist) at 37°C reduced transient arterial phase respiratory artifact vs non-warmed (11.2% vs 21.1%, p=0.031 for arterial phase). Store GBCM at ~25°C; bring to room temperature before use.</div>
+</div>
+
+<button class="chapter-btn" onclick="toggleCh(this)"><span>Ch 10 · Post-Contrast AKI &amp; CIN in Adults <span class="tag red">Board Favorite ★</span></span><span class="chapter-arrow">▼</span></button>
+<div class="chapter-body">
+<h3>Terminology — Critical Distinction</h3>
+<div class="formula">CA-AKI (Contrast-Associated AKI) = any AKI within 48h of contrast — CORRELATIVE (may or may not be caused by CM)
+CI-AKI (Contrast-Induced AKI) = AKI CAUSED by contrast — CAUSATIVE (subgroup of CA-AKI)
+CA-AKI ≠ CI-AKI. They are NOT interchangeable.</div>
+<div class="kf danger"><strong>ACR Position:</strong> CI-AKI is real but RARE. Published studies heavily contaminated by bias and conflation. Newhouse et al: in &gt;30,000 NON-contrast patients, &gt;50% showed ≥25% SCr change and &gt;40% showed ≥0.4 mg/dL change — pure physiologic fluctuation, not contrast effect.</div>
+<h3>KDIGO AKI Criteria</h3>
+<div class="formula">Within 48 hours of contrast exposure (any one criterion):
+1. Absolute SCr increase ≥0.3 mg/dL (>26.4 µmol/L)
+2. SCr increase ≥50% (≥1.5× baseline)
+3. Urine output ≤0.5 mL/kg/h for ≥6 hours</div>
+<h3>Risk Stratification by eGFR</h3>
+<table class="acr-table">
+<tr><th>eGFR (mL/min/1.73m²)</th><th>CI-AKI Risk from IV CM</th><th>ACR Recommendation</th></tr>
+<tr><td>≥45</td><td>No independent risk (4 large propensity studies)</td><td>No special precautions</td></tr>
+<tr><td>30–44</td><td>Either not nephrotoxic or rarely so</td><td>No mandatory precautions; may consider prophylaxis in high-risk</td></tr>
+<tr><td>&lt;30 (CKD 4–5)</td><td>Best-supported threshold for risk; 2 of 4 studies showed independent risk</td><td>Caution; IV saline prophylaxis; relative contraindication</td></tr>
+<tr><td>AKI</td><td>Highest caution; eGFR unreliable in AKI</td><td>Avoid CM if possible; prophylaxis if given</td></tr>
+<tr><td>Anuric ESRD on dialysis</td><td>No additional renal damage possible</td><td>Can receive CM; do NOT initiate dialysis for CM</td></tr>
+</table>
+<div class="kf warning"><strong>IA vs IV route:</strong> Cardiac angiography (supra-renal IA) → higher CI-AKI incidence than IV. Three reasons: (1) direct abrupt renal delivery, (2) catheter dislodges atheroemboli, (3) higher renal dose concentration. IA data OVERESTIMATES IV CM nephrotoxicity risk.</div>
+<h3>Screening — When to Check Renal Function?</h3>
+<ul>
+<li>Personal history of renal disease (CKD, prior AKI, dialysis, kidney surgery/ablation, albuminuria)</li>
+<li>Metformin use</li>
+<li>Diabetes mellitus (optional)</li>
+<li>Age alone and treated hypertension alone → high false positive rate; NOT reliable screening indicators</li>
+<li>Acceptable interval: outpatients 30 days; shorter for inpatients</li>
+</ul>
+<h3>Prevention</h3>
+<div class="kf success"><strong>IV Volume Expansion — MOST EFFECTIVE</strong><br>0.9% normal saline (isotonic preferred over 0.45%); typical: 500 mL before + 3–12h after, or 1–3 mL/kg/h<br>Indicated: AKI or eGFR &lt;30. Consider: eGFR 30–44 in high-risk. NOT needed: stable eGFR ≥30 or anuric dialysis patients.</div>
+<div class="kf danger"><strong>NOT Recommended:</strong> N-acetylcysteine (no benefit vs placebo in PRESERVE trial), mannitol (no benefit), furosemide (may worsen), theophylline, fenoldopam. Bicarbonate: probably similar to NS but not preferred (needs compounding).</div>
+<div class="kf"><strong>Contrast Choice:</strong> LOCM less nephrotoxic than HOCM. Iso-osmolar iodixanol: no clear advantage over LOCM for IV administration (meta-analysis 25 trials, n=&gt;10,000). Do NOT reduce CM doses to mitigate CI-AKI — may cause nondiagnostic images.</div>
+</div>
+
+<button class="chapter-btn" onclick="toggleCh(this)"><span>Ch 11 · Metformin <span class="tag gold">Practical ★</span></span><span class="chapter-arrow">▼</span></button>
+<div class="chapter-body">
+<div class="kf warning"><strong>Core Concept:</strong> Metformin does NOT increase risk of CI-AKI. Concern: IF contrast causes AKI in metformin patient → metformin accumulates → lactic acidosis risk (mortality ~50%; rate: 0–0.084/1,000 patient-years; no documented cases in properly selected patients).</div>
+<h3>ACR Management</h3>
+<div class="formula">CATEGORY I — eGFR ≥30, no AKI:
+→ Continue metformin before AND after IV contrast
+→ No need to reassess renal function post-contrast
+
+CATEGORY II — eGFR &lt;30, AKI, OR arterial catheter with potential renal emboli:
+→ Hold metformin at time of (or before) procedure
+→ Withhold for 48 hours post-procedure
+→ Restart only after renal function reassessed and confirmed normal
+
+GBCM at standard MRI doses (0.1–0.3 mmol/kg):
+→ No need to hold metformin (GBCM not nephrotoxic at approved doses)</div>
+<div class="kf"><strong>FDA vs ACR:</strong> FDA guidelines (as of 4/2016) are MORE RESTRICTIVE than ACR. ACR believes prevailing clinical evidence supports less stringent management. Document this discrepancy if ACR approach is used.</div>
+<h3>Common Metformin Drug Combinations</h3>
+<p>Glucophage (metformin alone), Glucovance (+glyburide), Metaglip (+glipizide), Janumet (+sitagliptin), Kombiglyze (+saxagliptin), ActoPlus Met (+pioglitazone), Jentadueto (+linagliptin), Prandimet (+repaglinide), Avandamet (+rosiglitazone).</p>
+</div>
+
+<button class="chapter-btn" onclick="toggleCh(this)"><span>Ch 12 · Contrast Media in Children + Ferumoxytol <span class="tag purple">Pediatric</span></span><span class="chapter-arrow">▼</span></button>
+<div class="chapter-body">
+<h3>Key Differences from Adults</h3>
+<ul>
+<li>Allergic-like reaction rates LOWER in children &lt;10y and elderly &gt;60y than middle-aged adults (Katayama, n=150,000+)</li>
+<li>Osmolality more critical: neonates/infants susceptible to large fluid shifts → cardiac failure/pulmonary edema with hyperosmolar CM</li>
+<li>Viscosity critical: small-gauge catheters + high-viscosity CM → catheter failure, vessel injury</li>
+</ul>
+<h3>Safe Injection in Neonates/Infants</h3>
+<ul>
+<li>Dose: 1.5–2 mL/kg typical (small volume → careful timing for CTA)</li>
+<li>24-gauge catheter: max ~1.5 mL/sec, 150 psi (Amaral study)</li>
+<li>Small syringes generate HIGHER pressures than large syringes — caution</li>
+<li>Consider hand injection when access is tenuous</li>
+<li>Always verify CVC certified for power injection before use</li>
+</ul>
+<div class="kf warning"><strong>Attention to site:</strong> Neonates, infants, developmentally delayed patients cannot verbalize symptoms of extravasation — monitor closely</div>
+<h3>Pediatric Allergic-Like Reaction Rates</h3>
+<table class="acr-table">
+<tr><th>Study</th><th>Agent</th><th>N</th><th>Rate</th></tr>
+<tr><td>Dillman et al</td><td>Iodinated LOCM</td><td>11,000+</td><td>0.18% (16 mild, 1 mod, 3 severe)</td></tr>
+<tr><td>Callahan et al</td><td>Ioversol (up to age 21)</td><td>12,494</td><td>0.46% (none severe)</td></tr>
+<tr><td>Dillman et al</td><td>GBCM (peds)</td><td>13,344</td><td>0.04%</td></tr>
+<tr><td>Forbes-Amrhein et al</td><td>GBCM (peds)</td><td>32,365</td><td>~0.065%</td></tr>
+</table>
+<h3>Pediatric Premedication</h3>
+<div class="formula">ELECTIVE:
+Prednisone 0.5–0.7 mg/kg PO (max 50mg) at 13h, 7h, 1h before
+Diphenhydramine 1.25 mg/kg PO (max 50mg) 1h before
+
+URGENT/IV/NPO:
+Hydrocortisone 2 mg/kg IV (max 200mg) at 5h and 1h before
+Diphenhydramine 1 mg/kg IV/IM/PO (max 50mg) 1h before</div>
+<h3>Thyroid Monitoring (FDA 2022)</h3>
+<div class="kf warning"><strong>FDA recommends thyroid monitoring within 3 weeks of IV iodinated CM in newborns through 3 years.</strong><br>Wolff-Chaikoff effect: supraphysiologic iodine → thyroid hormone suppression. Most escape in 1–2 weeks. Failure: true hypothyroidism. Vulnerable: premature infants, very low birth weight, CHD infants.<br>ACR Position: Risk very low &lt;3 months; minimal-to-absent ≥3 months. Universal testing not strongly supported by literature.</div>
+<h3>Pediatric eGFR Calculation — CKiD U25 (not adult MDRD)</h3>
+<div class="formula">eGFR = (K × height in cm) / serum creatinine (mg/dL)
+K = age- and sex-dependent multiplier
+Best equation for ages 1–25 years (replaces older Bedside Schwartz for broader age range)
+
+Note: Newborn plasma creatinine reflects maternal creatinine for first ~3 weeks — unreliable marker of renal function in neonates.</div>
+<div class="kf success"><strong>Iodinated CM in neonates/infants:</strong> Generally safe regardless of serum creatinine/eGFR in absence of known kidney disease (Bedoya MA et al, Radiology 2017)</div>
+<h3>Ferumoxytol (Feraheme) — Off-Label MRI Use</h3>
+<div class="kf gold"><strong>FDA-approved: IV iron deficiency anemia in adults. Off-label: MRI contrast agent (growing use)</strong><br>Advantages: Long blood pool half-life (14–21h), high T1/T2 relaxivity, no nephrotoxicity. Dose for MRI: 1–7.5 mg/kg (most 2–4 mg/kg); dilute 1:2–4 in NS; concentration ≤10 mg/mL. Bolus for angiography; slow infusion for lymph node/steady-state imaging.</div>
+<div class="kf danger"><strong>FDA Boxed Warning (2015):</strong> 79 anaphylactic reactions, 18 fatalities in ~1.2 million therapeutic doses (2009–2015). 24% had multiple drug allergies; 50% reacted within 5 minutes. Contraindicated in prior IV iron hypersensitivity. Monitor BP/HR during and ≥30 min post-infusion.</div>
+<div class="kf warning"><strong>MRI Interference:</strong> T1/T2/T2* shortening effects. Interferes with gadolinium enhancement if given within 72 hours. Effects persist: brain (days), liver (up to 6 months), bone marrow (up to 3 months). MPS (liver, spleen, marrow) accumulates iron → mimics hemosiderosis. No effect on CT, PET, US, nuclear medicine.</div>
+<h3>GI Contrast in Pediatrics</h3>
+<ul>
+<li>Barium sulfate: standard for fluoroscopic UGI/colon; avoid in perforation (peritonitis risk); aspiration of large volume can be fatal</li>
+<li>Iodinated contrast: use for perforation concern, premature/VLBW neonates (prefer LOCM over HOCM); HOCM per os can cause dangerous fluid shifts + aspiration risk → chemical pneumonitis</li>
+<li>Lumason (SonoVue): only US contrast FDA-approved for pediatric bladder (contrast-enhanced voiding urosonography)</li>
+<li>Neutral oral contrast (enterography): Breeza preferred by pediatric patients over NeuLumEX for flavor</li>
+</ul>
+</div>
+
+<button class="chapter-btn" onclick="toggleCh(this)"><span>Ch 13 · GI Contrast Media in Adults — 2024 Update <span class="tag cyan">GI/Fluoro</span></span><span class="chapter-arrow">▼</span></button>
+<div class="chapter-body">
+<h3>Barium Sulfate</h3>
+<ul>
+<li>Choice for fluoroscopy (superior mucosal detail, resistance to dilution)</li>
+<li>Single contrast: optimal 60% w/v; double contrast colon: up to 250% w/v</li>
+<li>CT: dilute barium used for bowel opacification (routine or targeted use)</li>
+<li>NOT for CT/MR enterography (may obscure mural/mucosal abnormalities) → use neutral agents</li>
+</ul>
+<div class="kf danger"><strong>Barium Complications:</strong><ul><li>Perforation → barium peritonitis: colonic leak (highest mortality, highest bacterial count), esophageal leak (mediastinitis), gastric/duodenal/small bowel (peritonitis)</li><li>Aspiration: ciliary action usually clears; large volume → obstructive pneumonia or death</li><li>Barium toxicity (rare): dissociation from BaSO₄ → soluble barium absorbed → severe hypokalemia → muscle weakness, respiratory arrest, cardiac arrhythmia, death. Tx: aggressive K+ replacement.</li></ul></div>
+<div class="kf"><strong>When to use water-soluble FIRST:</strong> Suspected perforation/leak/fistula. If water-soluble misses suspected perforation → then give barium (barium better detects small leaks).</div>
+<h3>Water-Soluble Iodinated Enteric Agents</h3>
+<table class="acr-table">
+<tr><th>Agent</th><th>Composition</th><th>Osmolality</th><th>Key Points</th></tr>
+<tr><td>Gastrografin / Gastroview</td><td>Diatrizoate meglumine + sodium; 370 mg/mL iodine (37%)</td><td>HOCM (~2000 mOsm/kg)</td><td>Therapeutic: SBO, adynamic ileus (osmotic); dangerous in neonates (dehydration)</td></tr>
+<tr><td>Iohexol (Omnipaque 350)</td><td>Nonionic LOCM</td><td>Low-osmolality</td><td>Only LOCM with FDA-approved oral indication; safer if aspirated</td></tr>
+</table>
+<div class="kf warning"><strong>HOCM aspiration risk:</strong> Fluid shift at alveolar level → pulmonary edema. LOCM preferred for enteric use when aspiration risk exists (dysphagia, altered consciousness). Avoid HOCM in tracheoesophageal fistula.</div>
+<h3>Negative/Neutral Oral Contrast (CT/MR Enterography)</h3>
+<ul>
+<li>NeuLumEX / VoLumen: low-density barium + sorbitol + thickening agent</li>
+<li>Breeza: lemon-lime beverage with sorbitol/mannitol (pediatric patients prefer this flavor over NeuLumEX)</li>
+<li>Water, methylcellulose, polyethylene glycol (GoLytely) also used</li>
+</ul>
+<h3>Indications for Water-Soluble CT Contrast</h3>
+<ul>
+<li>Oncologic imaging, suspected bowel leak/fistula/abscess, abdominal pain, CT colonography</li>
+<li>No deleterious effects from water-soluble CM in mediastinum, pleural cavity, or peritoneal cavity</li>
+</ul>
+</div>
+
+<button class="chapter-btn" onclick="toggleCh(this)"><span>Ch 14–15 · Gadolinium Agents: Safety &amp; Adverse Reactions <span class="tag purple">GBCM ★</span></span><span class="chapter-arrow">▼</span></button>
+<div class="chapter-body">
+<h3>GBCM Adverse Event Rates</h3>
+<table class="acr-table">
+<tr><th>Reaction Type</th><th>Rate</th><th>Notes</th></tr>
+<tr><td>Overall adverse events</td><td>0.07–2.4%</td><td>Most mild/physiologic</td></tr>
+<tr><td>Allergic-like reactions</td><td>0.004–0.7%</td><td>Lower than iodinated CM</td></tr>
+<tr><td>Severe life-threatening</td><td>0.001–0.01%</td><td>Exceedingly rare</td></tr>
+<tr><td>Large institution (100,000+ inj)</td><td>0.15% total; 0.006% severe (6 rxns)</td><td>Davenport et al</td></tr>
+<tr><td>Fatalities</td><td>Extremely rare</td><td>Case reports exist</td></tr>
+</table>
+<div class="kf gold"><strong>Prior GBCM reaction → 8× increased risk for future GBCM reaction</strong><br>Gadobenate dimeglumine (MultiHance): FDA labeling contraindicates use in patients with prior GBCM allergic-like reaction.</div>
+<div class="kf"><strong>No cross-reactivity between GBCM and iodinated CM</strong><br>No elevated risk for iodinated CM reaction in patients with prior GBCM reaction, and vice versa (no more than any unrelated allergy).</div>
+<h3>Gadoxetate Disodium (Eovist/Primovist) — Transient Dyspnea</h3>
+<div class="kf warning"><strong>"Transient dyspnea" / breath-holding difficulty during arterial phase: 4–14% incidence</strong><br>PHYSIOLOGIC reaction (not allergic-like) → corticosteroid prophylaxis NOT helpful<br>Risk factors: dose &gt;10 mL (20 mL = 2× risk vs 10 mL); COPD (35–40% rate); prior episode (60% repeat rate vs 5% naïve)<br>Mitigation: ≤10 mL dose; avoid in COPD and prior-episode patients; multiple arterial phases with short temporal footprint</div>
+<h3>Gadolinium Retention / Deposition</h3>
+<p>T1 hyperintensity in globus pallidus and dentate nucleus after repeated linear GBCM doses. Macrocyclic agents: much less/no deposition. No confirmed adverse health effects from retention to date. Each IV GBCM administration: record identity and dose. Especially important in pediatric patients and those receiving multiple MRI studies over lifetime.</p>
+<h3>ACR-ASNR Position Statement</h3>
+<ul>
+<li>Use lowest effective dose; consider macrocyclic agents where appropriate</li>
+<li>Benefit of GBCM administration in appropriate indications outweighs risk of deposition</li>
+<li>Document identity and dose after each IV administration</li>
+<li>Particular attention for patients receiving many GBCM-enhanced MRI studies over lifetime</li>
+</ul>
+<h3>Serum Calcium Interference</h3>
+<p>Some linear nonionic GBCMs (gadoversetamide, gadodiamide) interfere with the orthocresolphthalein colorimetric assay → falsely LOW serum calcium values. Not actual hypocalcemia. Only this one assay affected; gadopentetate and gadoteridol do NOT cause this interference. Clinical pitfall: do not treat "lab hypocalcemia" as real.</p>
+<h3>Sickle Cell Disease and GBCM</h3>
+<div class="kf success"><strong>GBCM is safe in sickle cell disease at approved doses.</strong> No documented in vivo vaso-occlusive or hemolytic complications from IV GBCM in sickle cell patients. Small retrospective study with controls: no significantly increased risk. Do not withhold GBCM when clinically indicated.</div>
+<h3>Gadolinium Pregnancy Screening Statement (2023 Addition)</h3>
+<div class="kf danger"><strong>GBCAs cross placenta → fetal circulation (demonstrated in primates within 11 min).</strong><br>Accumulate in amniotic fluid → fetal swallows → cycles → prolonged exposure → free Gd³⁺ dissociation risk.<br>2016 Canadian retrospective study: GBCM in pregnancy associated with increased risk of stillbirth/neonatal death and rheumatologic/inflammatory conditions in offspring (first-trimester exposure). Results have limitations; not independently confirmed.<br><strong>ACR recommends:</strong> Standardized pregnancy screening before GBCM; use only when potential significant benefit outweighs unknown risk; document discussion with referring provider and patient; use Group II agent at lowest dose.</div>
+</div>
+
+<button class="chapter-btn" onclick="toggleCh(this)"><span>Ch 16 · Nephrogenic Systemic Fibrosis — 2025 Update <span class="tag red">High-Yield ★</span></span><span class="chapter-arrow">▼</span></button>
+<div class="chapter-body">
+<div class="kf danger"><strong>NSF:</strong> Fibrotic disease primarily of skin and subcutaneous tissues; also lungs, esophagus, heart, skeletal muscles. Rapidly progressive; sometimes fatal. GBCM exposure necessary for development (rare exceptions). Time from injection to onset: days to months (occasionally years).</div>
+<h3>GBCM Group Classification (ACR 2025)</h3>
+<table class="acr-table">
+<tr><th>Group</th><th>Examples</th><th>NSF Risk</th><th>High-Risk Patients</th></tr>
+<tr><td><span style="color:var(--red);font-weight:700">Group I</span></td><td>Gadodiamide (Omniscan), Gadopentetate dimeglumine (Magnevist), Gadoversetamide (OptiMARK)</td><td>Highest; almost all unconfounded NSF cases</td><td>FDA CONTRAINDICATED</td></tr>
+<tr><td><span style="color:var(--green);font-weight:700">Group II</span></td><td>Gadoteridol (ProHance), Gadobutrol (Gadavist), Gadoterate meglumine (Dotarem), Gadobenate (MultiHance), Gadoxetate (Eovist), Gadopiclenol (Elahere)</td><td>Very low/nonexistent; renal screening optional</td><td>PREFERRED — use Group II</td></tr>
+<tr><td><span style="color:var(--gold);font-weight:700">Group II*</span></td><td>Newer agents with favorable biochemistry but limited clinical data</td><td>Provisional; treat as II or III per local preference</td><td>Treat like Group II or III</td></tr>
+<tr><td><span style="color:var(--orange);font-weight:700">Group III</span></td><td>Insufficient clinical data to classify</td><td>Unknown</td><td>Treat like Group I</td></tr>
+</table>
+<h3>At-Risk Patient Definition (for Group I and III Agents)</h3>
+<ul>
+<li>On dialysis (any form)</li>
+<li>Severe/end-stage CKD — CKD Stage 4 or 5 (eGFR &lt;30 mL/min/1.73m²) without dialysis</li>
+<li>Acute Kidney Injury (AKI)</li>
+<li>Estimated 1–7% NSF risk per Group I GBCM exposure in eGFR &lt;30</li>
+<li>12–20% of NSF cases occurred in patients with AKI</li>
+</ul>
+<h3>Management by eGFR</h3>
+<div class="formula">eGFR ≥60 (CKD 1–2): Any GBCM safe; no special precautions
+eGFR 30–59 (CKD 3): NSF exceedingly rare; no special precautions needed
+eGFR &lt;30 (CKD 4–5): Group I CONTRAINDICATED → Use Group II
+Dialysis (any type): Group I CONTRAINDICATED → Use Group II
+AKI: Avoid Group I → Use Group II if GBCM truly needed</div>
+<div class="kf success"><strong>Group II agents strongly preferred in ALL at-risk patients.</strong> Since restricting Group I use, new NSF cases have dramatically decreased or been eliminated. The risks of withholding contrast-enhanced imaging must be weighed against the very low NSF risk of Group II agents.</div>
+<div class="kf"><strong>Multiple doses:</strong> For patients not at NSF risk: no contraindication if examination is necessary. For at-risk patients: use Group II agents. Do NOT initiate or alter dialysis schedule solely for GBCM administration.</div>
+<div class="kf warning"><strong>Hepatic disease alone is NOT an independent NSF risk factor.</strong> In 335 NSF patients with liver disease, all but one also had severe renal insufficiency (eGFR &lt;30). Liver disease without concurrent severe CKD/AKI does not independently predict NSF.</div>
+<h3>Screening Outpatients for NSF Risk (Group I and III)</h3>
+<p>Questionnaire-based risk factor screening (history of renal disease, dialysis, kidney transplant, single kidney, kidney surgery, known cancer involving kidneys, CKD/prior AKI, diabetes mellitus). If positive → obtain eGFR. Simply asking "do you have a kidney problem?" misses majority of patients with eGFR &lt;30.</p>
+<div class="kf"><strong>Inpatients:</strong> Obtain eGFR within 2 days before planned Group I or III GBCM. Assess for AKI (eGFR alone limited in AKI detection).</div>
+<h3>Postulated Mechanism</h3>
+<p>Gadolinium dissociates from chelate during prolonged renal clearance → free Gd³⁺ binds phosphate → insoluble precipitate deposits in tissues → fibrocyte activation → fibrosis. Linear agents (e.g., gadodiamide) less thermodynamically/kinetically stable than macrocyclic agents → more free Gd³⁺ release.</p>
+</div>
+
+<button class="chapter-btn" onclick="toggleCh(this)"><span>Ch 17 · Ultrasound Contrast Agents <span class="tag cyan">CEUS</span></span><span class="chapter-arrow">▼</span></button>
+<div class="chapter-body">
+<h3>FDA-Approved US Contrast Agents</h3>
+<table class="acr-table">
+<tr><th>Agent</th><th>Gas</th><th>Shell</th><th>Key Approved Indications</th></tr>
+<tr><td>Optison (GE)</td><td>Perflutren</td><td>Human albumin</td><td>Cardiac LV opacification; wall motion</td></tr>
+<tr><td>Lumason / SonoVue (Bracco)</td><td>Sulfur hexafluoride</td><td>Phospholipid</td><td>Cardiac; liver; ONLY one approved for pediatric bladder (ceVUS)</td></tr>
+<tr><td>Definity (Lantheus)</td><td>Perflutren</td><td>Phospholipid</td><td>Cardiac LV opacification; wall motion</td></tr>
+</table>
+<h3>Safety Profile</h3>
+<div class="kf success"><strong>Excellent safety profile:</strong><ul><li>Definity + Optison (78,383 doses): severe reaction rate 0.01% (8 cases); 0 deaths</li><li>SonoVue (23,188 subjects): 29 adverse events total; only 2 serious</li><li>Majority of reactions: mild and physiologic (headache, warmth, flushing, nausea, altered taste)</li><li>Most severe reactions occur within 30 minutes</li><li>No known renal toxicity at approved doses</li><li>No adequate well-controlled studies in pregnant women — use only if clearly needed</li></ul></div>
+<div class="kf warning"><strong>Contraindications:</strong><ul><li>Intra-arterial injection</li><li>Prior hypersensitivity to microspheres</li><li>Unstable cardiopulmonary conditions (acute MI, unstable CHF) → increased serious reaction risk</li><li>Right-to-left shunt: REMOVED from contraindications in updated FDA labeling</li><li>Optison: contains human albumin (theoretical viral/prion risk; contraindicated with religious/ethical objections to human blood products)</li></ul></div>
+<h3>Physics of Microbubbles</h3>
+<p>Microbubbles 1–4 µm diameter oscillate in resonance with diagnostic US frequency range (1–4 MHz). At high acoustic pressures, microbubbles rupture and dissolve, releasing inert gas eliminated via lungs. Shell composition and gas type determine stability, enhancement duration, and acoustic properties.</p>
+<h3>CEUS Applications (Off-Label unless specified)</h3>
+<ul>
+<li>Cardiac: LV opacification, regional wall motion assessment (Lumason, Definity, Optison — FDA-approved)</li>
+<li>Liver: characterization of focal lesions (Lumason FDA-approved for adults)</li>
+<li>Pediatric bladder: contrast-enhanced voiding urosonography (ceVUS) — Lumason ONLY FDA-approved pediatric bladder agent</li>
+<li>Trauma: solid organ injuries (off-label)</li>
+<li>Vascular: endoleak surveillance, carotid plaque (off-label)</li>
+<li>Crohn's disease: bowel wall vascularity assessment (off-label)</li>
+<li>Renal: indeterminate renal masses (off-label)</li>
+</ul>
+</div>
+
+<button class="chapter-btn" onclick="toggleCh(this)"><span>Ch 18–20 · Treatment · Pregnancy · Breastfeeding <span class="tag gold">Clinical ★</span></span><span class="chapter-arrow">▼</span></button>
+<div class="chapter-body">
+<h3>Treatment of Contrast Reactions — 5 Immediate Assessments</h3>
+<ol><li>General appearance?</li><li>Can patient speak? Quality of voice?</li><li>Quality of breathing?</li><li>Patient's pulse?</li><li>Patient's blood pressure?</li></ol>
+<div class="kf success"><strong>Mild reactions:</strong> Observe ≥20–30 min. Antihistamines for symptomatic urticaria. Check vital signs (detect silent hypotension in supine patient). May evolve to moderate/severe — do not dismiss.</div>
+<div class="kf danger"><strong>ANAPHYLAXIS:</strong><br>EPINEPHRINE 1:1,000 IM — lateral thigh — FIRST-LINE, no delays<br>Adult: 0.3–0.5 mg IM; repeat q5–15 min<br>Child: 0.01 mg/kg IM (max 0.5 mg); use EpiPen or EpiPen Jr autoinjector<br>Position: SUPINE + LEGS ELEVATED (unless dyspneic/pulmonary edema)<br>O₂ high-flow; IV access; isotonic IV fluids for hypotension<br>Bronchospasm: albuterol MDI ± epinephrine IM if severe<br>Beta-blocked patients: glucagon IV may be needed (non-adrenergic effect)</div>
+<div class="kf warning"><strong>VASOVAGAL (hypotension + bradycardia):</strong><br>Atropine 0.6–1 mg IV (max 3 mg); may repeat<br>Position supine, elevate legs; IV fluids<br>Do NOT give epinephrine for vasovagal — different mechanism</div>
+<h3>Iodinated CM in Pregnancy</h3>
+<div class="kf success"><strong>IV iodinated LOCM in pregnancy:</strong> No evidence of mutagenic or teratogenic effects. Crosses placenta but clinically insignificant. No documented neonatal hypothyroidism from maternal IV iodinated CM.<br><strong>ACR: Do NOT withhold iodinated CM when clinically indicated in pregnancy. No routine pregnancy screening required before iodinated CM use.</strong></div>
+<h3>GBCM in Pregnancy</h3>
+<div class="kf danger"><strong>GBCAs: Administer ONLY when potential significant benefit outweighs unknown risk to fetus.</strong><br>Required documentation (radiologist + referring physician agreement):<br>1. Information unavailable without IV contrast or alternative imaging<br>2. Information affects care during pregnancy<br>3. Not prudent to wait until post-delivery<br>Use Group II agent at lowest dose needed. Informed consent recommended.</div>
+<h3>Premedication in Pregnant Patients</h3>
+<p>Diphenhydramine: FDA Category B (safe). Prednisone/methylprednisolone: FDA Category C (traverse placenta; most metabolized by placenta; generally safe; small cleft lip risk with methylprednisolone before 10 weeks). Expert opinion: indicated premedication should NOT be withheld due to pregnancy.</p>
+<h3>Positioning for Hypotension in Pregnancy</h3>
+<p>Left lateral decubitus OR supine with leftward tilt (wedge) to relieve IVC compression by gravid uterus. If CPR needed: supine position with manual uterine displacement upward and to the left.</p>
+<h3>Breastfeeding — 2024 Evidence-Based Update</h3>
+<div class="kf success"><strong>Both iodinated CM and GBCM: Breastfeeding does NOT need to be interrupted.</strong><ul><li>Iodinated CM in breast milk: &lt;0.01% of maternal dose excreted; infant absorbs &lt;1% of ingested</li><li>GBCM absorbed by infant: estimated &lt;0.0004% of maternal dose</li><li>Both: clinically insignificant amounts reaching infant</li><li>ACR: inform patient and make shared decision</li><li>Strength of Evidence: Limited (but consistent across studies)</li></ul></div>
+</div>
+
+</div><!-- end chapters -->
+
+<!-- QUIZ TAB -->
+<div id="tab-quiz" class="content">
+<h2>🧠 Quiz Bank <span class="pill">60 Questions</span></h2>
+<div class="quiz-header">
+  <div class="level-toggle">
+    <button class="level-btn active" onclick="setLevel('beginner',this)">FY Resident</button>
+    <button class="level-btn" onclick="setLevel('advanced',this)">Board Level</button>
+  </div>
+  <div class="score-display" id="quizScore">Score: 0 / 0</div>
+</div>
+<div class="cat-filter" id="catFilter">
+  <button class="cat-btn active" onclick="filterCat('all',this)">All</button>
+  <button class="cat-btn" onclick="filterCat('iodinated',this)">Iodinated CM</button>
+  <button class="cat-btn" onclick="filterCat('gadolinium',this)">Gadolinium</button>
+  <button class="cat-btn" onclick="filterCat('safety',this)">Safety</button>
+  <button class="cat-btn" onclick="filterCat('renal',this)">Renal</button>
+  <button class="cat-btn" onclick="filterCat('pediatric',this)">Pediatric</button>
+  <button class="cat-btn" onclick="filterCat('treatment',this)">Treatment</button>
+</div>
+<div class="progress-wrap">
+  <div class="progress-label"><span id="qProgressLabel">Question 1 of 30</span><span id="qCorrectLabel">✓ 0</span></div>
+  <div class="progress-bg"><div class="progress-fill" id="qProgressFill" style="width:0%"></div></div>
+</div>
+<div class="question-card" id="questionCard">
+  <div class="q-meta">
+    <span class="q-badge" id="qCategory">Category</span>
+    <span class="q-badge" id="qDifficulty">Level</span>
+  </div>
+  <div class="question-text" id="questionText">Loading question...</div>
+  <div id="optionsDiv"></div>
+  <div class="explanation" id="explanationDiv"></div>
+  <div class="quiz-controls">
+    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" style="display:none">Next →</button>
+    <button class="btn btn-secondary" onclick="skipQuestion()">Skip</button>
+    <span class="q-counter" id="qCounter"></span>
+  </div>
+</div>
+</div>
+
+<!-- FLASHCARDS TAB -->
+<div id="tab-flashcards" class="content">
+<h2>🃏 Flashcards <span class="pill">30 Cards</span></h2>
+<div class="level-toggle" style="margin-bottom:14px">
+  <button class="level-btn active" onclick="setFCSet('core',this)">Core Concepts</button>
+  <button class="level-btn" onclick="setFCSet('drugs',this)">Drug Facts</button>
+  <button class="level-btn" onclick="setFCSet('numbers',this)">Numbers</button>
+</div>
+<div class="flashcard" id="flashcard" onclick="flipCard()">
+  <div class="flashcard-front" id="fcFront">Loading...</div>
+  <div class="flashcard-back" id="fcBack"></div>
+  <div class="flip-hint" id="fcHint">Tap to reveal answer</div>
+</div>
+<div class="quiz-controls">
+  <button class="btn btn-secondary" onclick="prevFC()">← Prev</button>
+  <button class="btn btn-primary" onclick="nextFC()">Next →</button>
+  <span class="q-counter" id="fcCounter">1 / 1</span>
+</div>
+</div>
+
+<!-- QUICK REF TAB -->
+<div id="tab-quickref" class="content">
+<h2>⚡ Quick Reference</h2>
+<div class="card">
+  <div class="card-header"><div class="card-icon" style="background:rgba(239,68,68,.2)">🚨</div><div><div class="card-title">Anaphylaxis — Memorize This Cold</div></div></div>
+  <div class="formula">EPINEPHRINE 1:1,000 IM — LATERAL THIGH — FIRST-LINE, NO DELAYS
+Adult: 0.3–0.5 mg IM; repeat q5–15 min as needed
+Pediatric: 0.01 mg/kg IM (max 0.5 mg) → EpiPen Jr for most children
+Position: SUPINE + LEGS ELEVATED (unless respiratory distress)
+O₂ high-flow | IV access | Isotonic fluids for hypotension
+Beta-blocked patients: consider glucagon IV
+Call emergency response (911 / code team) for severe reactions</div>
+</div>
+<div class="card">
+  <div class="card-header"><div class="card-icon" style="background:rgba(245,158,11,.2)">💊</div><div><div class="card-title">Premedication Quick Guide</div></div></div>
+  <div class="formula">ELECTIVE ORAL (12–13h):
+Option 1: Prednisone 50mg PO × 3 (13h, 7h, 1h) + Diphenhydramine 50mg 1h before
+Option 2: Methylprednisolone 32mg PO × 2 (12h, 2h) ± Diphenhydramine
+
+ACCELERATED IV (≥4–5h — HAS evidence):
+MPred 40mg IV OR Hydrocortisone 200mg IV q4h + Diphenhydramine 50mg IV 1h before
+
+EMERGENT (&lt;4h — NO evidence, last resort):
+Single dose MPred 40mg IV + Diphenhydramine 50mg IV 1h before
+
+PEDIATRIC ELECTIVE: Prednisone 0.5–0.7 mg/kg (max 50mg) at 13h, 7h, 1h + Diphenhydramine 1.25 mg/kg (max 50mg) 1h before</div>
+</div>
+<div class="card">
+  <div class="card-header"><div class="card-icon" style="background:rgba(16,185,129,.2)">🫘</div><div><div class="card-title">Renal Thresholds — eGFR Guide</div></div></div>
+  <table class="acr-table">
+    <tr><th>eGFR</th><th>Iodinated CM</th><th>GBCM / NSF Risk</th></tr>
+    <tr><td>≥60</td><td>No special precautions</td><td>Any GBCM; no NSF risk</td></tr>
+    <tr><td>30–59</td><td>No mandatory precautions</td><td>Any GBCM; NSF exceedingly rare (CKD3)</td></tr>
+    <tr><td>&lt;30</td><td>Caution; IV saline prophylaxis; relative contraindication</td><td>Group I CONTRAINDICATED → Use Group II</td></tr>
+    <tr><td>AKI</td><td>Highest caution; avoid if possible</td><td>Avoid Group I → Use Group II</td></tr>
+    <tr><td>Anuric ESRD</td><td>Safe — no additional renal damage possible</td><td>Group I CONTRAINDICATED → Use Group II</td></tr>
+  </table>
+</div>
+<div class="card">
+  <div class="card-header"><div class="card-icon" style="background:rgba(139,92,246,.2)">🧲</div><div><div class="card-title">GBCM NSF Group Classification</div></div></div>
+  <table class="acr-table">
+    <tr><th>Group</th><th>Examples</th><th>High-Risk Patients</th></tr>
+    <tr><td><span style="color:var(--red);font-weight:700">I — Highest NSF</span></td><td>Gadodiamide (Omniscan), Gadopentetate (Magnevist), Gadoversetamide (OptiMARK)</td><td>FDA CONTRAINDICATED</td></tr>
+    <tr><td><span style="color:var(--green);font-weight:700">II — Very Low/None</span></td><td>Gadoteridol (ProHance), Gadobutrol (Gadavist), Gadoterate (Dotarem), Gadoxetate (Eovist), Gadopiclenol</td><td>PREFERRED — use in all at-risk patients</td></tr>
+    <tr><td><span style="color:var(--orange);font-weight:700">III — Unknown</span></td><td>Insufficient data</td><td>Treat like Group I</td></tr>
+  </table>
+</div>
+<div class="card">
+  <div class="card-header"><div class="card-icon" style="background:rgba(16,185,129,.2)">💉</div><div><div class="card-title">Metformin Decision Tree</div></div></div>
+  <div class="formula">eGFR ≥30 + NO AKI → Continue metformin; no post-contrast reassessment needed
+eGFR &lt;30 OR AKI OR arterial catheter → Hold at procedure; withhold 48h post; restart only after renal function confirmed normal
+GBCM at standard dose (0.1–0.3 mmol/kg) → No need to hold metformin</div>
+</div>
+<div class="card">
+  <div class="card-header"><div class="card-icon" style="background:rgba(245,158,11,.2)">🤰</div><div><div class="card-title">Pregnancy &amp; Breastfeeding Summary</div></div></div>
+  <table class="acr-table">
+    <tr><th>Situation</th><th>Recommendation</th></tr>
+    <tr><td>Iodinated CM + pregnancy</td><td>Give if clinically needed; no restriction; no teratogenicity with LOCM</td></tr>
+    <tr><td>GBCM + pregnancy</td><td>Only when benefit outweighs unknown risk; Group II at lowest dose; document</td></tr>
+    <tr><td>Iodinated CM + breastfeeding</td><td>Continue breastfeeding — &lt;0.01% in milk; not clinically significant</td></tr>
+    <tr><td>GBCM + breastfeeding</td><td>Continue breastfeeding — &lt;0.0004% absorbed by infant; not clinically significant</td></tr>
+  </table>
+</div>
+<div class="card">
+  <div class="card-header"><div class="card-icon" style="background:rgba(6,182,212,.2)">📊</div><div><div class="card-title">Key Numbers to Memorize for Boards</div></div></div>
+  <table class="acr-table">
+    <tr><th>Fact</th><th>Number</th></tr>
+    <tr><td>LOCM overall allergic-like reaction rate</td><td>0.6%</td></tr>
+    <tr><td>LOCM severe reaction rate</td><td>0.04% (4/10,000)</td></tr>
+    <tr><td>LOCM fatality rate (meta-analysis)</td><td>0.9/100,000</td></tr>
+    <tr><td>GBCM overall adverse event rate</td><td>0.07–2.4%</td></tr>
+    <tr><td>GBCM severe reaction rate</td><td>0.001–0.01%</td></tr>
+    <tr><td>Prior same-class CM reaction → fold risk increase</td><td>~5× (iodinated); ~8× (GBCM)</td></tr>
+    <tr><td>Recurrence rate in high-risk non-premedicated</td><td>10–35%</td></tr>
+    <tr><td>Breakthrough reaction rate despite premedication</td><td>~2.1%</td></tr>
+    <tr><td>Extravasation incidence</td><td>0.1–1.2% of CT power injections</td></tr>
+    <tr><td>NSF risk (Group I + eGFR &lt;30)</td><td>1–7% per exposure</td></tr>
+    <tr><td>NNT to prevent 1 reaction (any severity)</td><td>69</td></tr>
+    <tr><td>NNT to prevent 1 severe reaction</td><td>569</td></tr>
+    <tr><td>Fasting: aspiration events in 2001 patients receiving modern CM without fasting</td><td>0</td></tr>
+    <tr><td>Iodinated CM in breast milk</td><td>&lt;0.01% of maternal dose</td></tr>
+    <tr><td>GBCM absorbed by infant from breastmilk</td><td>&lt;0.0004% of maternal dose</td></tr>
+    <tr><td>US contrast severe reaction rate (Definity+Optison, n=78,383)</td><td>0.01%</td></tr>
+    <tr><td>Gadoxetate transient dyspnea: 20 mL dose vs 10 mL dose risk</td><td>2× greater risk</td></tr>
+    <tr><td>Myasthenia gravis: exacerbation rate with LOCM</td><td>6.3% within 24h (vs 0.6% no contrast)</td></tr>
+  </table>
+</div>
+</div>
+
+<!-- ACHIEVEMENTS TAB -->
+<div id="tab-achievements" class="content">
+<h2>🏆 Achievements</h2>
+<div id="achievementsDiv"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+// ===== STATE =====
+var S=JSON.parse(localStorage.getItem('acrCM26')||'{}');
+if(!S.xp)S={xp:0,correct:0,bestStreak:0,streak:0,achievements:[]};
+
+// ===== QUESTIONS =====
+var Q=[
+// BEGINNER
+{l:'b',c:'iodinated',q:'What is the approximate overall allergic-like reaction rate to nonionic low-osmolality iodinated contrast media (LOCM)?',o:['0.06%','0.6%','6%','0.006%'],a:1,e:'Wang et al (n=84,928): 0.6% overall allergic-like rate with LOCM. Severe reactions: 0.04%. Fatality: ~0.9/100,000.'},
+{l:'b',c:'iodinated',q:'A patient states she has a shellfish allergy. How does this affect iodinated contrast media administration?',o:['Premedication required — shellfish allergy confers high CM risk','Shellfish allergy carries no greater risk than any other unrelated allergy','Use gadolinium instead','Perform skin testing first'],a:1,e:'Shellfish and Betadine (povidone-iodine) allergies are NOT greater risk factors than other unrelated allergies. ACR: do NOT premedicate or restrict CM solely for shellfish allergy. This is a major board misconception to unlearn.'},
+{l:'b',c:'safety',q:'Is fasting required before routine intravenous contrast administration with modern nonionic LOCM?',o:['Yes — 4 hours NPO','Yes — 6 hours NPO','No — fasting is NOT required for routine IV CM administration','Yes — 2 hours for clear liquids only'],a:2,e:'Modern nonionic LOCM and GBCM have very low nausea/vomiting rates. 2012 meta-analysis (2,001 patients): zero aspiration pneumonia despite heterogeneous fasting. Fasting NOT required for routine IV CM. Exception: conscious sedation → follow ASA guidelines.'},
+{l:'b',c:'iodinated',q:'What is the greatest single risk factor for predicting a future allergic-like contrast reaction?',o:['Asthma','Shellfish allergy','Prior allergic-like reaction to the SAME class of contrast media','Female sex'],a:2,e:'Prior allergic-like reaction to the same class of contrast medium confers approximately a 5-fold increased risk of future reaction. This is the ACR-defined greatest single risk factor.'},
+{l:'b',c:'iodinated',q:'A patient on metformin has eGFR 52. They need contrast CT. What do you do with metformin?',o:['Hold 48h before and after CT','Hold day of CT only','Continue metformin — no need to hold or reassess renal function','Switch to insulin before CT'],a:2,e:'ACR Category I: eGFR ≥30, no AKI → NO need to hold metformin before or after IV contrast. No mandatory post-contrast renal function reassessment. Metformin does not increase CI-AKI risk; concern only arises IF AKI develops.'},
+{l:'b',c:'safety',q:'What is the preferred IV site for contrast power injection?',o:['Hand vein','Foot vein','Antecubital or large forearm vein','Wrist vein'],a:2,e:'Antecubital or large forearm vein is preferred. Hand, wrist, foot, and ankle sites have higher extravasation risk and are associated with more severe injuries if extravasation occurs.'},
+{l:'b',c:'renal',q:'Which term correctly describes AKI that is CAUSED by contrast medium (not merely correlated)?',o:['CA-AKI (Contrast-Associated AKI)','CI-AKI (Contrast-Induced AKI)','PCAKI (Post-Contrast AKI)','CIN (Contrast-Induced Nephropathy)'],a:1,e:'CI-AKI = Contrast-Induced AKI = AKI CAUSED by CM (causative). CA-AKI = Contrast-Associated AKI = any AKI within 48h of CM regardless of cause (correlative). CA-AKI ≠ CI-AKI. These terms are NOT interchangeable.'},
+{l:'b',c:'gadolinium',q:'Which eGFR threshold represents the most evidence-supported risk cutoff for CI-AKI after IV iodinated contrast?',o:['eGFR <60','eGFR <45','eGFR <30','eGFR <15'],a:2,e:'Four large propensity-score studies (each >10,000 patients) showed no significant CI-AKI risk at eGFR ≥30. eGFR <30 (CKD Stage 4–5) has the strongest evidence for being an independent risk factor. eGFR <45 previously used but not strongly supported by modern evidence.'},
+{l:'b',c:'treatment',q:'A patient develops hypotension with bradycardia after contrast injection. What is this and the first-line treatment?',o:['Anaphylaxis → epinephrine IM immediately','Vasovagal reaction → supine position + legs elevated + atropine IV','Cardiogenic shock → start pressors','Physiologic reaction → observe only'],a:1,e:'Hypotension + BRADYCARDIA = vasovagal reaction (increased vagal tone). Treatment: supine with legs elevated, atropine 0.6–1 mg IV (max 3 mg), IV fluids. This differs from anaphylaxis (hypotension ± tachycardia + allergic features → epinephrine first-line).'},
+{l:'b',c:'iodinated',q:'Should beta-blockers be discontinued before contrast administration?',o:['Yes — stop 24h before','Yes — they prevent epinephrine from working','No — do not discontinue beta-blockers solely for contrast','Only if patient had prior CM reaction'],a:2,e:'ACR: patients on beta-blocker therapy do NOT need to discontinue medications prior to contrast. While beta-blockers may modestly affect reaction severity and epinephrine response, overall increase in risk does not justify withholding beta-blockers.'},
+{l:'b',c:'safety',q:'What is the treatment for clinically significant venous air embolism from power injection?',o:['Epinephrine IM + antihistamines','100% oxygen + left lateral decubitus (LEFT side DOWN)','Trendelenburg position + IV fluids','CPR only'],a:1,e:'100% O₂ and left lateral decubitus (LEFT side DOWN) — traps air in right ventricular apex, preventing passage into pulmonary artery. Hyperbaric O₂ reduces bubble size. CPR if cardiac arrest. The left-side-down position is the key board pearl here.'},
+{l:'b',c:'pediatric',q:'How does allergic-like contrast reaction rate in children under 10 compare to middle-aged adults?',o:['Much higher in children','Similar to middle-aged adults','Lower in children under 10 (also lower in elderly >60)','Only higher in neonates'],a:2,e:'Katayama et al (>150,000 nonionic CM administrations): patients <10 years AND >60 years have LOWEST overall adverse reaction rates. Middle-aged patients have highest rates. Severity of reactions was more uniform across all age groups.'},
+{l:'b',c:'gadolinium',q:'What is NSF and who is primarily at risk?',o:['Allergic reaction to gadolinium in normal kidney function','Fibrotic disease involving skin and tissues occurring in severe renal dysfunction after GBCM exposure','Acute tubular necrosis from gadolinium','Reversible skin rash from gadolinium'],a:1,e:'NSF = Nephrogenic Systemic Fibrosis. Fibrotic disease primarily of skin and subcutaneous tissues (also lungs, esophagus, heart, skeletal muscle). Occurs primarily in patients with eGFR <30 (CKD 4–5), AKI, or on dialysis after GBCM exposure. Can be rapidly progressive and fatal.'},
+{l:'b',c:'iodinated',q:'A high-risk patient needs urgent CT but cannot wait for 12h premedication. What is the appropriate approach?',o:['Proceed without premedication — only works for elective cases','Accelerated IV premedication: methylprednisolone 40mg IV + diphenhydramine 50mg IV over ≥4–5 hours','Single oral prednisone 50mg 30 min before','Use gadolinium-enhanced MRI instead'],a:1,e:'Accelerated IV premedication (methylprednisolone 40mg IV or hydrocortisone 200mg IV q4h + diphenhydramine 50mg 1h before) for ≥4–5h HAS some supporting evidence. Regimens <4–5h have NO evidence but may be used in true emergencies as last resort.'},
+{l:'b',c:'treatment',q:'What is the minimum observation period after a mild allergic-like contrast reaction?',o:['5 minutes','10 minutes','20–30 minutes','60 minutes'],a:2,e:'ACR: observe for minimum 20–30 minutes after any mild allergic-like reaction to ensure stability or recovery. A mild reaction can evolve into a moderate or severe reaction. Vital signs should be obtained.'},
+{l:'b',c:'renal',q:'What is the most effective preventive measure for CI-AKI in at-risk patients?',o:['N-acetylcysteine','Sodium bicarbonate infusion','IV volume expansion with isotonic saline','Iso-osmolar contrast (iodixanol) instead of LOCM'],a:2,e:'IV volume expansion with isotonic fluid (0.9% normal saline) is the MOST EFFECTIVE preventive measure. N-acetylcysteine not recommended (no benefit in PRESERVE trial RCT). Bicarbonate similar to NS but not preferred. Iodixanol has no clear advantage over LOCM in IV administration.'},
+{l:'b',c:'renal',q:'Can anuric ESRD patients on chronic dialysis receive IV iodinated contrast for a required CT?',o:['Never — permanent renal damage will occur','Yes — anuric ESRD patients have no residual renal function; no further damage possible','Only if dialysis within 2 hours','Only with gadolinium instead'],a:1,e:'Anuric patients with ESRD who do NOT have a functioning transplant kidney can receive iodinated contrast without additional renal risk. Their kidneys are nonfunctional — no CI-AKI possible. Do NOT initiate acute dialysis or alter dialysis schedule solely for CM administration.'},
+{l:'b',c:'gadolinium',q:'Is there cross-reactivity between iodinated and gadolinium-based contrast media?',o:['Yes — high cross-reactivity risk','No — no cross-reactivity between different classes of contrast media','Only if prior anaphylaxis','Yes — shared allergen'],a:1,e:'NO cross-reactivity between different classes of contrast media. Prior GBCM reaction does NOT predict future iodinated CM reaction, and vice versa — no more than any other unrelated allergy.'},
+{l:'b',c:'iodinated',q:'When bowel perforation is suspected, which enteric contrast agent should be used FIRST?',o:['Barium sulfate — superior mucosal detail','Water-soluble iodinated contrast first; barium only if water-soluble fails to show perforation','Both simultaneously','Gadolinium-based contrast orally'],a:1,e:'Water-soluble iodinated contrast (e.g., Gastrografin or diluted iohexol) is preferred when perforation is suspected — rapidly absorbed from peritoneum/mediastinum, low risk of peritonitis. If water-soluble fails to demonstrate suspected perforation → barium can then be given (barium better detects small leaks).'},
+{l:'b',c:'treatment',q:'What is the FIRST-LINE treatment for contrast-induced anaphylaxis?',o:['Diphenhydramine IV','Corticosteroids IV','Epinephrine (1:1,000) intramuscular','Isotonic fluids wide open'],a:2,e:'Epinephrine 1:1,000 IM (lateral thigh) is FIRST-LINE for anaphylaxis. Adult: 0.3–0.5 mg IM. Pediatric: 0.01 mg/kg IM (max 0.5 mg). Antihistamines and steroids are adjuncts ONLY — they must never delay epinephrine.'},
+{l:'b',c:'safety',q:'What must be confirmed before power-injecting contrast through a PICC or central venous catheter?',o:['Catheter is at least 18-gauge','Patient has normal renal function','Catheter is manufacturer-certified/rated for power injection','Patient is not on anticoagulation'],a:2,e:'Contrast can ONLY be power-injected through PICCs or CVCs that have been certified for power injection by the manufacturer, with the specific flow-rate limit noted. Uncertified catheters risk rupture.'},
+{l:'b',c:'iodinated',q:'Standard recommendation for hyperthyroid patient needing contrast CT?',o:['Iodinated contrast absolutely contraindicated in all hyperthyroid patients','Generally safe; avoid in acute thyroid storm; allow iodine washout 3–4 weeks before RAI (6 weeks if hypothyroid)','Premedicate with corticosteroids','Use GBCM instead'],a:1,e:'Hyperthyroid patients can generally receive iodinated contrast. Special situations: (1) Acute thyroid storm — avoid (potentiates thyrotoxicosis); (2) Before RAI therapy — 3–4 week washout for hyperthyroid, 6 weeks for hypothyroid. Normal thyroid: no effect on thyroid function tests.'},
+{l:'b',c:'gadolinium',q:'Unique adverse effect of gadoxetate disodium (Eovist) NOT seen with other GBCAs?',o:['NSF at standard doses','Transient dyspnea / breath-holding difficulty causing arterial phase motion artifact','More allergic reactions than other GBCAs','Serum calcium interference'],a:1,e:'"Transient dyspnea" — breath-holding difficulty in 4–14% of patients — is a physiologic reaction unique to gadoxetate disodium. NOT allergic-like → corticosteroid prophylaxis is NOT helpful. Risk factors: >10 mL dose, COPD, prior episode. Mitigation: ≤10 mL, avoid in COPD/prior-episode patients, multiple arterial phases.'},
+{l:'b',c:'iodinated',q:'Is intradermal skin testing with contrast media useful for predicting allergic reactions?',o:['Yes — highly sensitive and specific','No — not shown useful; test injections may actually increase severe reaction risk','Only useful for iodinated, not gadolinium','Yes — but only in patients with prior reactions'],a:1,e:'Intradermal skin testing with contrast media has NOT been shown useful. Does not reliably predict who will react. Test injections may actually INCREASE incidence of severe allergic-like reactions. Not recommended by ACR.'},
+{l:'b',c:'safety',q:'Standard management of contrast extravasation without signs of compartment syndrome?',o:['Aspirate contrast; inject hyaluronidase locally','Elevate extremity; cold or warm compresses; observe; clear discharge instructions','Immediate surgical consultation regardless','Apply compression bandage'],a:1,e:'Elevate extremity above heart; cold or warm compresses (cold initially preferred empirically); provide clear discharge instructions (seek care for worsening pain, paresthesia, decreased ROM, ulceration/blistering). Aspiration and hyaluronidase NOT recommended. Surgical consult only for signs of compartment syndrome.'},
+{l:'b',c:'pediatric',q:'FDA 2022: thyroid monitoring recommendation after IV iodinated CM — timeframe and age group?',o:['6 months; all children under 18','Within 3 weeks; newborns through 3 years of age','1 month; neonates only','No monitoring — risk is negligible'],a:1,e:'FDA (2022) recommends thyroid monitoring within 3 weeks of IV iodinated CM in newborns through 3 years of age. ACR position: risk very low <3 months; minimal-to-absent ≥3 months. Universal testing not strongly supported by published literature.'},
+{l:'b',c:'gadolinium',q:'ESRD patient on hemodialysis needs contrast MRI. What is the correct approach?',o:['No gadolinium — absolutely contraindicated in all dialysis patients','Group II GBCM only; time exam near scheduled dialysis; do NOT initiate extra dialysis sessions','Any GBCM acceptable; schedule extra dialysis after','Use ferumoxytol exclusively'],a:1,e:'Group II GBCAs can be used in ESRD when MRI is truly needed. Group I agents are FDA-contraindicated in dialysis patients. Time the exam near a scheduled dialysis session to improve clearance. Do NOT initiate or alter dialysis schedule solely for GBCM — risks (catheter, infection) outweigh the very low NSF risk of Group II.'},
+{l:'b',c:'iodinated',q:'Breastfeeding mother received IV iodinated contrast. What is the correct advice?',o:['Stop breastfeeding for 24 hours; discard milk','Stop for 48 hours','Continue breastfeeding — amount in milk and absorbed by infant is clinically negligible (<0.01%)','Continue only if she received LOCM not HOCM'],a:2,e:'ACR (2024 evidence-based update): Breastfeeding does NOT need to be interrupted after iodinated CM. <0.01% of maternal dose excreted in milk; infant absorbs <1% of ingested amount. Clinically insignificant. Recommend shared decision-making.'},
+{l:'b',c:'treatment',q:'Observation period after premedicated patient receives contrast?',o:['5 min','No observation needed after premedication','≥20–30 minutes (same as all patients)','Until next day'],a:2,e:'Premedication does NOT guarantee no reaction ("premedication is not a panacea"). Breakthrough reaction rate remains ~2.1% even with premedication. All patients should be observed for ≥20–30 minutes.'},
+{l:'b',c:'iodinated',q:'Which reaction type does NOT require future premedication recommendation?',o:['Prior moderate urticaria with iodinated CM','Prior anaphylaxis with iodinated CM','Vasovagal reaction (hypotension + bradycardia) after CM','Prior unknown-type reaction to same class CM'],a:2,e:'Vasovagal reactions are PHYSIOLOGIC (not allergic-like). They are caused by increased vagal tone — a non-immune mechanism. Future premedication is NOT needed. Only allergic-like or unknown-type reactions to the same class of CM warrant consideration of future premedication.'},
+
+// ADVANCED
+{l:'a',c:'iodinated',q:'Patient with prior moderate breakthrough reaction despite 13h oral premedication needs urgent contrast CT. Most appropriate management?',o:['Proceed without premedication given urgency','Accelerated 4–5h IV premedication + consider switching CM agent; resuscitation team on standby','Switch to gadolinium-enhanced MRI','Add H2 blocker to standard regimen'],a:1,e:'Prior breakthrough reaction of moderate severity = highest risk for future breakthrough. If urgent: accelerated IV premedication (≥4–5h) is indicated. Switching CM agent within the same class has an effect size potentially as great as premedication alone; combining both has greatest effect. H2 blockers not well-studied. Resuscitation team must be available.'},
+{l:'a',c:'renal',q:'What did 4 large propensity-score studies (>10,000 patients each, 2013–2014) conclude about IV iodinated contrast at eGFR 30–44?',o:['All 4 showed significant CI-AKI risk requiring prophylaxis','IV CM either not nephrotoxic or rarely so in eGFR 30–44; eGFR <30 showed independent risk in 2 of 4 studies','eGFR 30–44 is the highest-risk group for CI-AKI','All eGFR <45 patients require dialysis post-contrast'],a:1,e:'4 large propensity-score studies found: eGFR ≥45 — no independent risk from IV CM. eGFR 30–44 — CM either not nephrotoxic or rarely so. For eGFR <30: two studies showed independent nephrotoxic risk; two did not. eGFR <30 is the most evidence-supported threshold for CI-AKI risk.'},
+{l:'a',c:'gadolinium',q:'What chemical property explains gadodiamide\'s (Omniscan) higher NSF risk versus gadoteridol (ProHance)?',o:['Gadodiamide is ionic; gadoteridol is nonionic','Gadodiamide is linear nonionic (less thermodynamically stable) vs gadoteridol which is macrocyclic (more stable; less Gd dissociation)','Gadodiamide has higher osmolality','Gadoteridol crosses the blood-brain barrier'],a:1,e:'The prevailing NSF hypothesis: gadolinium dissociation from the chelate leads to free Gd³⁺ deposition → fibrosis. Linear chelates (gadodiamide, gadopentetate, gadoversetamide — Group I) are less thermodynamically/kinetically stable than macrocyclic chelates (gadoteridol, gadobutrol, gadoterate — Group II). Less stable = more free Gd³⁺ release in prolonged renal exposure.'},
+{l:'a',c:'iodinated',q:'Newhouse et al found >50% of non-contrast patients showed ≥25% SCr change spontaneously. What is the implication?',o:['Confirms contrast causes significant renal damage at these rates','Shows most published CA-AKI studies overestimate CI-AKI because physiologic SCr fluctuation mimics contrast nephrotoxicity in studies without proper control groups','Proves SCr is better than eGFR for CI-AKI diagnosis','Supports using 0.3 mg/dL threshold for CI-AKI'],a:1,e:'Newhouse et al (>30,000 non-contrast inpatients): >50% showed ≥25% SCr change, >40% showed ≥0.4 mg/dL change without any contrast. This is the most compelling evidence that CI-AKI studies lacking proper control groups heavily overestimate true contrast nephrotoxicity — physiologic fluctuation gets misattributed to contrast.'},
+{l:'a',c:'iodinated',q:'Why can first-exposure anaphylaxis occur with contrast media and what is the main pathogenesis?',o:['Classic IgE-mediated type I hypersensitivity — prior sensitization always required','Mostly non-IgE-mediated: ~90% direct histamine release from basophils/eosinophils; IgE in only ~4% of anaphylaxis; NO prior sensitization required','Complement-mediated immune complex disease — always delayed','T-cell–mediated cytotoxicity'],a:1,e:'~90% of acute contrast reactions involve direct histamine release from basophils/eosinophils — NOT classical IgE-mediated. IgE allergy found in only ~4% of anaphylaxis cases by skin testing. Multiple non-IgE mechanisms: complement, contact/kinin system, nitric oxide, factor XII → bradykinin, pseudoantigens. Prior sensitization NOT required — explains first-exposure anaphylaxis.'},
+{l:'a',c:'gadolinium',q:'Appropriate mitigation strategy for gadoxetate (Eovist) transient dyspnea?',o:['Corticosteroid prophylaxis before administration','Limit injected volume to ≤10 mL; avoid in COPD or prior-episode patients; acquire multiple arterial phases with short temporal footprint','Switch to gadobutrol (identical pharmacokinetics)','Use warm contrast injection'],a:1,e:'Transient dyspnea is PHYSIOLOGIC (dose-volume related), not allergic-like → steroids NOT helpful. Mitigation: (1) limit dose to ≤10 mL (20 mL = 2× risk), (2) avoid in COPD (35–40% incidence) and prior-episode patients (60% repeat rate vs 5% naïve), (3) acquire multiple arterial phases with short temporal footprint to salvage diagnostic quality.'},
+{l:'a',c:'renal',q:'When exactly should IV hydration prophylaxis be given to prevent CI-AKI per ACR?',o:['All patients with eGFR <60','All outpatients receiving contrast','Patients with AKI or eGFR <30; consider for eGFR 30–44 in high-risk; NOT indicated for stable eGFR ≥30 or chronic dialysis','Only patients on dialysis'],a:2,e:'IV saline prophylaxis indicated: AKI or eGFR <30. Optional/individualized: eGFR 30–44 in high-risk circumstances. NOT indicated: stable eGFR ≥30 (no significant CI-AKI risk) or anuric dialysis patients (no renal function to protect). AMACING trial showed no benefit of prophylaxis in moderate CKD (eGFR 30–59).'},
+{l:'a',c:'safety',q:'Why is CI-AKI risk lower after IV iodinated CM than after intra-arterial (IA) injection (e.g., cardiac angiography)?',o:['IV contrast has lower iodine concentration','IA is often ionic (HOCM); IV is nonionic (LOCM)','IA (especially supra-renal) = catheter may dislodge atheroemboli + higher abrupt renal dose concentration + direct renal arterial delivery — all absent with IV injection','IV contrast is diluted before reaching kidneys'],a:2,e:'Three key differences: (1) Supra-renal IA injection delivers contrast directly and abruptly to kidneys at higher concentration, (2) Angiographic catheters can dislodge atheroemboli → renal arterial emboli, (3) Renal contrast dose more concentrated and rapid with IA. IV CM is diluted in systemic circulation first. Therefore IA data OVERESTIMATES IV CM nephrotoxicity risk.'},
+{l:'a',c:'iodinated',q:'Patient on chronic prednisone 10 mg/day has had prior moderate CM reaction and needs contrast CT. How to adjust premedication?',o:['Add chronic dose on top of full standard regimen','Reduce premedication dose by amount equivalent to chronic steroid dose; maintain ≥4–5h total corticosteroid therapy','Skip corticosteroids since patient is already on steroids','Use double-dose standard premedication'],a:1,e:'ACR: In patients on chronic therapeutic corticosteroids, reduce premedication dose by amount equivalent to the chronic dose. Maintain guiding principle of ≥4–5h corticosteroid therapy before contrast. If on replacement-only steroids (not therapeutic), dosing may not need adjustment. No evidence base — individualize management.'},
+{l:'a',c:'treatment',q:'Elderly patient on metoprolol develops anaphylaxis. Initial epinephrine doses appear ineffective. What additional treatment?',o:['Double epinephrine dose only','Glucagon IV (beta-blocker reversal) + higher-dose epinephrine; aggressive resuscitation','Switch to subcutaneous epinephrine','Sodium bicarbonate for acidosis'],a:1,e:'Beta-blockers can decrease epinephrine effectiveness, increase reaction severity, and blunt treatment response. Glucagon (1–5 mg IV) works through non-adrenergic pathways — effective in beta-blocker-refractory anaphylaxis. Critical board pearl: always consider beta-blocker use when epinephrine response is inadequate.'},
+{l:'a',c:'pediatric',q:'What makes ferumoxytol useful as off-label MRI contrast and what is its FDA boxed warning?',o:['T1-shortening at standard doses; only concern is NSF risk','Long blood pool half-life (14–21h); enables vascular/delayed imaging; no nephrotoxicity; boxed warning: serious anaphylaxis including cardiac arrest (79 reactions, 18 deaths per 1.2M therapeutic doses 2009–2015)','No allergic potential; risk only from iron overload','FDA approval includes all pediatric patients >6 months'],a:1,e:'Ferumoxytol: long plasma half-life (14–21h), high T1/T2 relaxivity, no nephrotoxicity. FDA Boxed Warning (2015): serious/fatal anaphylaxis including cardiac arrest. 79 anaphylactic reactions, 18 fatalities per 1.2M therapeutic doses. Contraindicated in prior IV iron hypersensitivity. 50% of severe reactions within 5 min. MRI use is off-label; approved for iron deficiency anemia in adults only.'},
+{l:'a',c:'gadolinium',q:'After GBCM is excreted into fetal amniotic fluid, what happens and why is this concerning?',o:['Immediately filtered by mature fetal kidneys within hours','Fetus swallows amniotic fluid; some GBCM reabsorbed from gut; gadolinium cycles in amniotic fluid with unknown clearance — prolonged exposure increases free Gd dissociation risk','Binds albumin and is safely sequestered','Fetal kidneys mature in 2nd trimester and clear gadolinium effectively'],a:1,e:'After GBCM enters fetal bloodstream (crosses placenta within minutes → fetal urine → amniotic fluid), the fetus swallows amniotic fluid, some GBCM is reabsorbed from gut and excreted back into amniotic fluid — creating a cycle. Rate of clearance from amniotic fluid is UNKNOWN. Prolonged exposure at relatively high concentration → risk of free Gd dissociation → potential NSF-like risk in fetus.'},
+{l:'a',c:'renal',q:'Which KDIGO AKI criterion is most likely to be misdiagnosed as CI-AKI due to physiologic fluctuation?',o:['Urine output criterion — contrast causes oliguria','Absolute SCr ≥0.3 mg/dL — physiologic fluctuation in SCr can meet this threshold without contrast involvement, especially in CKD where daily SCr variance is greater','All KDIGO criteria are specific to CI-AKI','None — KDIGO criteria were designed for CI-AKI'],a:1,e:'Newhouse et al: >40% of non-contrast inpatients showed ≥0.4 mg/dL SCr change. KDIGO AKI threshold = ≥0.3 mg/dL. Patients with CKD have even greater daily SCr variance. In studies without proper control groups, this physiologic fluctuation is misattributed to contrast — massively inflating apparent CI-AKI incidence.'},
+{l:'a',c:'iodinated',q:'How does Gastrografin treat small bowel obstruction and why is it dangerous in neonates?',o:['Coats obstructed segment; safe in all ages','As a hyperosmolar agent (~2000 mOsm/kg), it draws fluid INTO bowel lumen (osmotic effect), reducing edema and obstruction; in neonates this same mechanism causes dangerous dehydration and hypovolemia from massive fluid shift','Relaxes bowel smooth muscle pharmacologically','It is LOCM and therefore safe for all GI uses including neonates'],a:1,e:'Gastrografin/Gastroview are HIGH osmolar CM (~2000 mOsm/kg). Hyperosmolarity draws fluid into bowel lumen — therapeutically useful for adhesive SBO, adynamic ileus, meconium ileus. In neonates/infants with immature physiology, this fluid shift can cause severe dehydration, hypovolemia, and electrolyte imbalance. Additionally, aspiration of HOCM → pulmonary edema (fluid shift at alveolar level). LOCM or diluted agents preferred in vulnerable patients.'},
+{l:'a',c:'safety',q:'Why does delayed cutaneous contrast reaction NOT trigger an ACR premedication recommendation?',o:['Because delayed reactions are always minor and will not recur','Delayed reactions appear to involve T-cell–mediated mechanisms distinct from IgE/non-IgE acute pathways targeted by corticosteroids; severe delayed reactions are extremely rare; premedication efficacy for delayed reactions is unknown','Antihistamines are 100% effective for delayed reactions','Delayed reactions are physiologic not allergic-like'],a:1,e:'Delayed reactions (30 min–1 week) appear to involve T-cell–mediated hypersensitivity — different from IgE or direct histamine mechanisms of acute reactions. Efficacy of corticosteroid/antihistamine prophylaxis for delayed reactions is unknown. Severe delayed reactions are extremely rare. Therefore, premedication is NOT specifically advocated for patients with a sole history of mild delayed cutaneous reactions.'},
+{l:'a',c:'gadolinium',q:'Some linear nonionic GBCMs cause falsely low serum calcium on certain assays. What is the mechanism and clinical implication?',o:['GBCM binds serum calcium causing true hypocalcemia detectable by any assay','GBCM interferes specifically with orthocresolphthalein colorimetric calcium assay — falsely LOW calcium WITHOUT actual change; gadopentetate and gadoteridol do NOT interfere; do not treat "lab hypocalcemia" as real','IgE-mediated calcium channel blockade','Only gadoversetamide causes this; gadodiamide does not'],a:1,e:'Some linear nonionic GBCMs (gadoversetamide, gadodiamide) interfere ONLY with the orthocresolphthalein colorimetric calcium assay → falsely low total calcium values. NOT actual hypocalcemia. Only this one assay type affected. Gadopentetate and gadoteridol have no effect. Critical board pitfall: do not treat gadolinium-induced "lab hypocalcemia" as real — could lead to harmful calcium administration.'},
+{l:'a',c:'pediatric',q:'What is the Wolff-Chaikoff effect and which pediatric populations cannot escape it?',o:['Iodine activates thyroid peroxidase permanently — irreversible','Supraphysiologic iodine inhibits thyroid hormone synthesis; most escape in 1–2 weeks; failure to escape → true hypothyroidism; most vulnerable: premature infants, VLBW, infants with CHD','Radioactive iodine uptake blocked by iodinated contrast — only for thyroid scintigraphy','Iodine suppresses TSH at pituitary — affects adults more than children'],a:1,e:'Wolff-Chaikoff: supraphysiologic iodine → inhibits thyroid hormone synthesis (autoregulatory protection). Most individuals escape within 1–2 weeks (down-regulation of sodium-iodide symporter). Failure to escape → true hypothyroidism. Most vulnerable: premature infants, very low birth weight, infants with CHD — FDA 2015: 10 cases infant hypothyroidism post-iodinated CM (all had CHD or prematurity, 1969–2012).'},
+{l:'a',c:'treatment',q:'Key distinction: managing hypotension in anaphylaxis vs vasovagal reaction after contrast?',o:['Both treated identically with IV fluids','Anaphylaxis: hypotension ± tachycardia + allergic features → EPINEPHRINE first-line; Vasovagal: hypotension + BRADYCARDIA → ATROPINE IV + supine/legs elevated; epinephrine NOT for vasovagal','Vasovagal requires more aggressive treatment','Both require immediate epinephrine'],a:1,e:'Critical distinction: Anaphylaxis = hypotension ± tachycardia + allergic features (urticaria, bronchospasm, angioedema) → EPINEPHRINE first-line. Vasovagal = hypotension + BRADYCARDIA (increased vagal tone) → ATROPINE IV (0.6–1 mg, max 3 mg) + supine/legs elevated. Giving epinephrine to a vasovagal patient is inappropriate — different mechanism entirely.'},
+{l:'a',c:'iodinated',q:'What is the significance of NNT statistics for contrast premedication in high-risk patients?',o:['NNT of 1: premedication always prevents reactions','NNT 69 (any reaction); 569 (severe); 50,000 (fatal) — demonstrating premedication prevents relatively few reactions while ALL premedicated patients are exposed to direct/indirect harms (LOS, infection, hyperglycemia, diagnostic delay)','NNT of 2: very cost-effective','These numbers apply only to HOCM, not LOCM'],a:1,e:'Mervak et al: NNT 69 to prevent 1 reaction any severity; NNT 569 for severe; ~50,000 for fatal. Davenport et al: 13h inpatient oral premedication → +25h LOS, +25h to CT, increased hospital-acquired infections, increased costs. Evidence-based framework shows indirect harms often exceed benefits, especially for urgent inpatient diagnoses. ACR treats premedication as "may be considered" not mandatory.'},
+{l:'a',c:'gadolinium',q:'Why is hepatic insufficiency alone NO LONGER an independent NSF risk factor per ACR?',o:['NSF only occurs with pulmonary disease, not liver disease','Of 335 NSF patients with liver disease (10% of all cases), all but one also had severe renal insufficiency (eGFR <30) — liver disease was confounded by concurrent severe renal disease; liver disease alone without severe CKD/AKI does not independently predict NSF','FDA removed liver failure from NSF risk in 2010','Reduced hepatic metabolism protects against gadolinium accumulation'],a:1,e:'Initial reports noted disproportionate NSF in hepatorenal syndrome patients, prompting FDA to warn about liver disease as a risk factor. However, analysis of 335 NSF patients with liver disease: 334/335 also had documented severe renal insufficiency (eGFR <30). Liver disease was confounded by concurrent renal disease. Hepatic disease in isolation, without AKI or severe CKD, is no longer an independent NSF risk factor.'},
+{l:'a',c:'iodinated',q:'A patient with CKD Stage 4 (eGFR 27) needs urgent contrast-enhanced CT for suspected PE. What is the most appropriate approach to contrast administration?',o:['Refuse contrast — CI-AKI risk is absolute contraindication','Administer IV iodinated CM with pre- and post-hydration with isotonic saline; proceed with diagnostic study — benefit outweighs risk','Use ferumoxytol instead','Perform VQ scan instead without any contrast'],a:1,e:'No eGFR or SCr threshold is an absolute contraindication to contrast — always risk-benefit analysis. In a potentially life-threatening condition (suspected PE), the diagnostic benefit of contrast CT likely outweighs the CI-AKI risk. Use IV saline prophylaxis (500mL NS before + continue 3–12h after). Consider whether other modalities (VQ, CTPA without CM) could answer the question. Document risk-benefit discussion.'},
+{l:'a',c:'gadolinium',q:'What is the significance of gadolinium being found in the brains (globus pallidus, dentate nucleus) of patients who received only macrocyclic GBCAs (e.g., gadoteridol)?',o:['Confirms macrocyclic agents are just as dangerous as linear agents for brain deposition','Shows that even macrocyclic agents may deposit some gadolinium, though far less than linear agents; no confirmed adverse health effects to date; supports recording identity and dose of every GBCM administration','Proof that macrocyclic agents should be avoided entirely','Indicates active NSF pathogenesis in the brain'],a:1,e:'Some studies found T1 signal in globus pallidus/dentate nucleus even after macrocyclic agents, though far less than with linear agents. No confirmed adverse health effects have been demonstrated to date. This finding reinforces: (1) minimizing unnecessary GBCM use, (2) documenting every administration, (3) using lowest effective dose, (4) particular caution in patients who will receive many lifetime MRI studies (pediatric patients, brain tumor patients).'},
+{l:'a',c:'safety',q:'A contrast extravasation occurs in a patient who received iopamidol 370. The patient has mild pain and mild swelling only. You consider hyaluronidase injection. What does ACR evidence say?',o:['Strongly recommended — evidence shows it significantly reduces tissue injury','Acceptable as a first option alongside corticosteroid injection','No consistent evidence of benefit; routine use NOT recommended; most minor extravasations resolve with elevation and compresses alone','Required for all power-injected extravasations regardless of volume'],a:2,e:'ACR: no consistent evidence that hyaluronidase or corticosteroid local injection is beneficial after contrast extravasation. Multiple case reports exist but no adequate studies confirm efficacy. For a mild extravasation without signs of compartment syndrome: elevation above heart level, cold or warm compresses, and discharge instructions with clear return precautions are appropriate. Aspiration of extravasated CM is also not recommended (rarely effective).'},
+{l:'a',c:'renal',q:'Why does the ACR recommend AGAINST dose reduction of iodinated contrast to mitigate CI-AKI risk in high-risk patients when contrast must be given?',o:['Because dose does not affect CI-AKI risk at any level','There is no robust dose-toxicity relationship for IV iodinated CM within the range of clinically administered doses; dose reduction risks producing non-diagnostic images without proven renal benefit','Because premedication adequately protects kidneys regardless of dose','Because eGFR auto-adjusts based on contrast dose'],a:1,e:'While there is data suggesting a dose-toxicity relationship for INTRA-CARDIAC iodinated CM in cardiac angiography, there is no analogous robust data for INTRAVENOUS iodinated CM within the range of clinically administered doses. Therefore, reducing dose to mitigate CI-AKI risk is not recommended — it may result in suboptimal or nondiagnostic images without proven renal benefit. If benefits of contrast are deemed to outweigh CI-AKI risk: use standard dosing.'},
+{l:'a',c:'iodinated',q:'A patient has a prior documented moderate allergic-like reaction to iopromide (a specific iodinated CM). An alternative iodinated CM is now available. What is the evidence for switching agents?',o:['No benefit from switching — all iodinated CMs have identical reaction profiles','Some studies show switching CM within the same class reduces future reaction likelihood; effect size may be as great as premedication alone; combining switching + premedication has greatest effect','Switching only helps if original agent is an ionic CM','Switching is contraindicated — increases sensitization risk'],a:1,e:'Abe et al and Park et al both showed that changing to a different iodinated CM (even within the same class) may reduce the likelihood of future allergic-like reactions. The effect size of switching agents may actually be as great as premedication alone, and combining agent switch with premedication has the greatest protective effect. The challenge: many patients do not know which specific agent caused their prior reaction. Future EMR-based tracking should improve this.'},
+{l:'a',c:'pediatric',q:'In a very premature neonate (gestational age 28 weeks), the eGFR calculated by CKiD U25 formula is 18 mL/min/1.73m². Does this represent pathologic renal disease requiring Group I GBCM avoidance?',o:['Yes — this eGFR is <30 and Group I must be avoided in all such patients','Not necessarily pathologic — premature neonates have immature renal function with physiologically low eGFR that does not represent pathologic CKD; however, ACR still recommends caution and use of Group II agents when feasible in these patients','No — neonatal renal function is always normal','Yes — all premature neonates require dialysis before gadolinium'],a:1,e:'Very premature neonates may have eGFR <30 simply due to physiologic renal immaturity (not pathologic CKD). The neonatal kidney undergoes rapid maturation. ACR acknowledges this nuance but still recommends caution when administering GBCAs to premature neonates, suggesting Group II agents should be used when feasible. No NSF cases have been reported in neonates to date, but insufficient data to confirm safety of Group I agents in this population.'},
+{l:'a',c:'gadolinium',q:'What is the mechanism behind the "transient dyspnea" artifact with gadoxetate disodium and why does the effect worsen with larger doses?',o:['Direct bronchoconstriction via IgE-mediated pathway','Volume-dependent physiologic effect causing transient breath-holding difficulty (dyspnea), likely related to the hepatobiliary uptake mechanism or osmotic properties of gadoxetate; larger volumes produce proportionally greater symptom severity — 20 mL doses have 2× the artifact rate of 10 mL doses','Cross-reactivity with iodinated contrast causing bronchospasm','Vasovagal reflex from rapid bolus injection'],a:1,e:'Transient dyspnea with gadoxetate disodium (Eovist) is a dose-volume–dependent physiologic reaction — NOT allergic-like. The exact mechanism is unclear but appears related to the unique hepatobiliary properties of gadoxetate rather than allergy. Because it is dose-dependent (not IgE-mediated), corticosteroid prophylaxis is ineffective. This is why ≤10 mL is recommended and 20 mL doses double the risk. Patients with prior episodes have a 60% repeat rate vs 5% in the unaffected population.'},
+{l:'a',c:'iodinated',q:'A patient developed acute generalized exanthematous pustulosis (AGEP) 48 hours after iodinated contrast. What type of reaction is this, what is the likely mechanism, and what is the appropriate future management?',o:['Immediate allergic-like reaction via IgE — treat as anaphylaxis equivalent; premedicate with steroids for future CM','Delayed cutaneous adverse event likely involving T-cell-mediated (Type IV) hypersensitivity; future premedication with steroids NOT specifically advocated as it targets a different mechanism; consider allergy referral; risk-benefit for future CM must be carefully assessed','Physiologic reaction; no special future management needed','Complement-mediated reaction; prevent with antihistamine premedication only'],a:1,e:'AGEP (acute generalized exanthematous pustulosis) is a severe delayed cutaneous reaction occurring 1–14 days after contrast. It likely involves T-cell-mediated (Type IV) hypersensitivity — a different pathway from the acute IgE/non-IgE allergic-like reactions targeted by corticosteroid/antihistamine premedication. The efficacy of premedication for T-cell-mediated delayed reactions is unknown. Rare fatal cases have been reported (particularly in SLE patients). Allergy/dermatology referral is appropriate for severe delayed cutaneous reactions.'},
+{l:'a',c:'treatment',q:'During a CT scan, a patient rapidly develops widespread urticaria, angioedema of lips, stridor, and an O₂ saturation of 88%. What is the precise sequence of management?',o:['Start O₂ first, then IV antihistamines, then call for help if not improving','Epinephrine 0.3–0.5 mg IM lateral thigh IMMEDIATELY → 100% O₂ → supine + legs elevated (unless respiratory distress) → IV access + isotonic fluids → call emergency response team → albuterol MDI for bronchospasm → reassess and repeat epinephrine q5–15 min if needed','Methylprednisolone 125mg IV first, then epinephrine if not improving','Diphenhydramine 50mg IV, then assess airway'],a:1,e:'Anaphylaxis with stridor and hypoxia = life-threatening. EPINEPHRINE FIRST — do not delay for antihistamines or steroids. Sequence: (1) Epinephrine 0.3–0.5 mg IM lateral thigh, (2) 100% O₂, (3) Position supine + legs elevated [modify if respiratory distress — semi-recumbent], (4) IV access + fluids, (5) Call emergency team/911, (6) Albuterol for bronchospasm component, (7) Repeat epinephrine q5–15 min if needed. Antihistamines and steroids are adjuncts only — they have slow onset and must NEVER precede or delay epinephrine.'},
+{l:'a',c:'renal',q:'What is the ACR position on whether acute dialysis should be initiated after GBCM administration in at-risk patients to reduce NSF risk?',o:['Acute dialysis should be scheduled within 2 hours of GBCM for any patient with eGFR <30','ACR and NKF recommend that elective GBCM-enhanced MRI be timed near a scheduled dialysis session when feasible, but acute or extra dialysis sessions should NOT be initiated or altered solely for GBCM — risks of catheter placement/infection outweigh the very low NSF risk of Group II agents','All ESRD patients must have post-GBCM dialysis within 4 hours','Peritoneal dialysis is preferred over hemodialysis for GBCM clearance']
+,a:1,e:'ACR and NKF consensus: Time elective GBCM-enhanced MRI as close before a regularly scheduled hemodialysis session as possible (improves GBCM clearance). HOWEVER, do NOT initiate acute dialysis or alter dialysis schedule (e.g., daily or multiple-per-day sessions) solely for GBCM administration — the risks (catheter placement complications, infection, worsening renal function in AKI/CKD) outweigh the very low NSF risk of Group II agents. Peritoneal dialysis provides less GBCM clearance than hemodialysis but has not been adequately studied.'}
+];
+
+// ===== FLASHCARD DATA =====
+var FC={
+core:[
+{f:'Difference between CA-AKI and CI-AKI?',b:'CA-AKI = Contrast-Associated AKI = any AKI within 48h of contrast — CORRELATIVE (may or may not be caused by CM)\nCI-AKI = Contrast-Induced AKI = AKI CAUSED by contrast — CAUSATIVE (subgroup of CA-AKI)\nCA-AKI ≠ CI-AKI. These are NOT interchangeable.'},
+{f:'NSF high-risk conditions (for Group I/III GBCMs)',b:'1. On dialysis (any form)\n2. Severe/end-stage CKD — CKD Stage 4 or 5 (eGFR <30 mL/min/1.73m²) without dialysis\n3. Acute Kidney Injury (AKI)\nEstimated 1–7% NSF risk per Group I exposure in eGFR <30'},
+{f:'Preferred GBCM for at-risk NSF patients?',b:'Group II agents: Gadoteridol (ProHance), Gadobutrol (Gadavist), Gadoterate meglumine (Dotarem), Gadoxetate (Eovist), Gadopiclenol.\nGroup I FDA-CONTRAINDICATED in at-risk patients.\nGroup II has very low or nonexistent NSF risk — renal function screening optional.'},
+{f:'NSF pathogenesis — mechanistic explanation',b:'Gadolinium dissociates from chelate (prolonged clearance in renal failure) → free Gd³⁺ binds phosphate → insoluble precipitate deposits in tissues → fibrocyte activation → fibrotic reaction.\nLinear chelates < thermodynamically stable than macrocyclic → more free Gd³⁺ release.'},
+{f:'Urticaria vs vasovagal — classify and future implications',b:'Urticaria = ALLERGIC-LIKE (anaphylactoid). Future: consider premedication for same-class CM.\nVasovagal (hypotension + bradycardia) = PHYSIOLOGIC. Treat with atropine + position. Future: NO premedication needed.\nNEVER conflate — different mechanisms, different future management.'},
+{f:'Why does published CI-AKI incidence overestimate true risk?',b:'Newhouse et al: >30,000 non-contrast inpatients; >50% showed ≥25% SCr change, >40% showed ≥0.4 mg/dL change without any contrast exposure. Physiologic SCr fluctuation mimics CI-AKI in studies without proper control groups. True CI-AKI is much rarer than historically believed.'},
+{f:'When NOT to premedicate based on prior reaction type',b:'Do NOT premedicate for:\n• Physiologic/non-allergic reactions (nausea, warmth, vasovagal)\n• Prior reaction to DIFFERENT CLASS of CM\n• Shellfish/Betadine allergy alone\n• Asthma alone (without prior CM reaction)\n• Multiple drug/food allergies without prior CM reaction\nDO premedicate: prior allergic-like or unknown-type reaction to SAME CLASS.'},
+{f:'KDIGO AKI criteria used for CA-AKI diagnosis',b:'Within 48h of contrast exposure (any one criterion):\n1. Absolute SCr increase ≥0.3 mg/dL (>26.4 µmol/L)\n2. SCr increase ≥50% (≥1.5× baseline)\n3. Urine output ≤0.5 mL/kg/h for ≥6 consecutive hours'},
+{f:'Ferumoxytol boxed warning — what and when?',b:'FDA 2015 Boxed Warning: 79 anaphylactic reactions (18 fatalities) per ~1.2 million therapeutic doses from 2009–2015. 24% of patients had multiple drug allergies; 50% of reactions within 5 minutes. Contraindicated in prior IV iron hypersensitivity. Monitor BP/HR during and ≥30 min after infusion.'},
+{f:'Wolff-Chaikoff effect — mechanism and vulnerable pediatric populations',b:'Supraphysiologic iodine → inhibits thyroid hormone synthesis (protective autoregulation). Most escape in 1–2 weeks (sodium-iodide symporter down-regulation). Failure to escape → true hypothyroidism.\nMost vulnerable: premature infants, VLBW neonates, infants with congenital heart disease (all 10 FDA 2015 cases).'}
+],
+drugs:[
+{f:'Group I GBCAs (highest NSF risk) — names',b:'Gadodiamide (Omniscan) — linear nonionic\nGadopentetate dimeglumine (Magnevist) — linear ionic\nGadoversetamide (OptiMARK) — linear nonionic\nAll FDA-contraindicated in at-risk patients (eGFR <30, AKI, dialysis).'},
+{f:'Group II GBCAs (very low NSF risk) — names and structure',b:'Gadoteridol (ProHance) — macrocyclic nonionic\nGadobutrol (Gadavist) — macrocyclic nonionic\nGadoterate meglumine (Dotarem) — macrocyclic ionic\nGadobenate dimeglumine (MultiHance) — linear ionic (contraindicated if prior GBCM reaction)\nGadoxetate disodium (Eovist) — linear ionic, hepatobiliary\nGadopiclenol (Elahere) — macrocyclic'},
+{f:'Gastrografin/Gastroview — composition, osmolality, therapeutic uses',b:'Diatrizoate meglumine 660mg/mL + diatrizoate sodium 100mg/mL = 370mg/mL iodine (37%)\nHIGH osmolar (HOCM ~2000 mOsm/kg)\nTherapeutic: SBO (osmotic effect draws fluid into lumen → reduces obstruction), adynamic ileus, meconium ileus/DIOS in CF\nDangerous in neonates/infants (dehydration risk from fluid shift)\nAspiration → pulmonary edema'},
+{f:'Elective oral premedication — 2 options',b:'Option 1 (Prednisone): 50mg PO at 13h, 7h, 1h before + Diphenhydramine 50mg 1h before\nOption 2 (Methylprednisolone): 32mg PO at 12h and 2h before ± Diphenhydramine 50mg\nBoth considered similarly effective; diphenhydramine is optional (not evidence-based addition in option 2)'},
+{f:'Accelerated IV premedication — 3 options',b:'1. MPred 40mg IV OR Hydrocortisone 200mg IV q4h + Diphenhydramine 50mg IV 1h before (≥4–5h — HAS evidence)\n2. Dexamethasone 7.5mg IV q4h + Diphenhydramine 50mg 1h before (for MPred allergy)\n3. Single dose MPred/Hydrocortisone + Diphenhydramine 1h before (emergency, NO evidence of efficacy)'},
+{f:'Common metformin drug combinations (trade names)',b:'Glucophage/Fortamet/Glumetza/Riomet (metformin alone)\nGlucovance (+glyburide), Metaglip (+glipizide), Janumet (+sitagliptin), Kombiglyze (+saxagliptin), ActoPlus Met (+pioglitazone), Jentadueto (+linagliptin), Prandimet (+repaglinide), Avandamet (+rosiglitazone)'},
+{f:'Pediatric premedication regimens (elective vs urgent)',b:'ELECTIVE: Prednisone 0.5–0.7 mg/kg PO (max 50mg) at 13h, 7h, 1h + Diphenhydramine 1.25 mg/kg PO (max 50mg) 1h before\nURGENT/NPO: Hydrocortisone 2 mg/kg IV (max 200mg) at 5h and 1h before + Diphenhydramine 1 mg/kg IV/IM/PO (max 50mg) 1h before'},
+{f:'US contrast agents — gas, shell, and key approved uses',b:'Optison: perflutren + human albumin → cardiac; contains human albumin (theoretical prion risk)\nLumason (SonoVue): sulfur hexafluoride + phospholipid → cardiac, liver (adults), pediatric bladder ceVUS (ONLY agent approved for this)\nDefinity: perflutren + phospholipid → cardiac'},
+{f:'Atropine dosing for vasovagal reaction',b:'Atropine 0.6–1.0 mg IV; may repeat to maximum 3 mg total\nMechanism: Blocks muscarinic receptors → reverses vagal-induced bradycardia and hypotension\nAlso: supine position, legs elevated, IV fluids\nNOT epinephrine (epinephrine for anaphylaxis, not vasovagal)'},
+{f:'Epinephrine dosing for anaphylaxis — adult and pediatric',b:'Adult: 0.3–0.5 mg IM (1:1,000) lateral thigh; repeat q5–15 min as needed\nPediatric: 0.01 mg/kg IM (max 0.5 mg); most children → EpiPen or EpiPen Jr autoinjector\nRoute: IM (NOT IV first-line, NOT subcutaneous)\nDo NOT delay epinephrine for antihistamines or steroids'}
+],
+numbers:[
+{f:'LOCM reaction rates — overall, severe, fatal',b:'Overall allergic-like: 0.6% (Wang et al, n=84,928)\nSevere: 0.04% (4/10,000)\nFatality: ~0.9/100,000 (meta-analysis Caro et al) or ~1/170,000 (Katayama Japanese study)'},
+{f:'GBCM adverse event and severe reaction rates',b:'Overall adverse events: 0.07–2.4%\nAllergic-like: 0.004–0.7%\nSevere life-threatening: 0.001–0.01%\nLarge institution (>100,000 injections): 0.15% total; 0.006% severe (6 reactions)\nFatalities: extremely rare'},
+{f:'Prior CM reaction — risk increase numbers',b:'Prior same-class iodinated CM reaction: ~5× increased future risk\nPrior same-class GBCM reaction: ~8× increased future risk\nRecurrence in non-premedicated high-risk: 10–35%\nBreakthrough reaction rate despite premedication: ~2.1%\nMild index reaction → <1% risk of severe breakthrough'},
+{f:'Extravasation — incidence and severity statistics',b:'Overall: 0.1–1.2% of CT power injections\nMost resolve without complication\nSevere injury (compartment syndrome, ulceration): <<1% of extravasations\nGBCM extravasation: ~1/6 as common as iodinated CM'},
+{f:'NSF risk numbers',b:'Group I GBCM + eGFR <30 or dialysis: 1–7% per exposure\n12–20% of NSF cases: patients had AKI\nCKD Stage 3 (eGFR 30–59): NSF exceedingly rare; no special precautions\nSince restricting Group I: new NSF cases dramatically decreased or eliminated'},
+{f:'Premedication NNT statistics',b:'NNT to prevent 1 reaction (any severity): 69\nNNT to prevent 1 severe reaction: 569\nNNT to prevent 1 fatal reaction: ~50,000\n13h inpatient premedication: +25h LOS, +25h to CT, increased hospital-acquired infection'},
+{f:'Breastfeeding — contrast amounts',b:'Iodinated CM excreted in breast milk: <0.01% of maternal dose\nInfant absorbs <1% of ingested amount\nGBCM absorbed by infant from breast milk: estimated <0.0004% of maternal dose\nConclusion: Both are safe to continue breastfeeding'},
+{f:'Gadoxetate (Eovist) transient dyspnea — incidence and risk factors',b:'Incidence: 4–14% (varies by site, parameters, volume)\n20 mL dose = 2× risk vs 10 mL\nCOPD: 35–40% incidence\nPrior episode: 60% repeat rate vs 5% naïve population'},
+{f:'Pediatric allergic-like reaction rates — key studies',b:'Dillman (LOCM, n>11,000 peds): 0.18% (16 mild, 1 moderate, 3 severe)\nCallahan (ioversol, n=12,494, age ≤21): 0.46% (none severe)\nDillman GBCM (peds): 0.04%\nForbes-Amrhein GBCM (n=32,365 peds): ~0.065%'},
+{f:'Metformin — key numbers',b:'Lactic acidosis rate: 0–0.084 cases/1,000 patient-years\nLactic acidosis mortality: ~50%\nNo documented cases in properly selected patients\nMetformin renal excretion: ~90% within 24 hours\nHalf-life of most LOCM: ~2 hours (→ ~20h to eliminate one dose at normal renal function)'}
+]};
+
+// ===== QUIZ LOGIC =====
+var lvl='b', cat='all', qIdx=0, filtered=[], qC=0, qT=0, answered=false;
+
+function getFiltered(){return Q.filter(function(q){return q.l===lvl&&(cat==='all'||q.c===cat);});}
+
+function setLevel(l,btn){
+  lvl=l;
+  document.querySelectorAll('.level-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  qIdx=0;qC=0;qT=0;answered=false;filtered=getFiltered();renderQ();
+}
+
+function filterCat(c,btn){
+  cat=c;
+  document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  qIdx=0;qC=0;qT=0;answered=false;filtered=getFiltered();renderQ();
+}
+
+function renderQ(){
+  filtered=getFiltered();
+  if(!filtered.length){document.getElementById('questionText').textContent='No questions match this filter.';document.getElementById('optionsDiv').innerHTML='';return;}
+  var q=filtered[qIdx%filtered.length];
+  document.getElementById('questionText').textContent=q.q;
+  document.getElementById('qCategory').textContent=q.c.toUpperCase();
+  document.getElementById('qDifficulty').textContent=q.l==='b'?'FY Resident':'Board Level';
+  var ltrs=['A','B','C','D'],html='';
+  q.o.forEach(function(opt,i){html+='<button class="option-btn" id="opt'+i+'" onclick="selectAns('+i+')"><span class="option-letter">'+ltrs[i]+'</span>'+opt+'</button>';});
+  document.getElementById('optionsDiv').innerHTML=html;
+  document.getElementById('explanationDiv').className='explanation';
+  document.getElementById('nextBtn').style.display='none';
+  var tot=filtered.length;
+  document.getElementById('qProgressLabel').textContent='Question '+(qIdx%tot+1)+' of '+tot;
+  document.getElementById('qProgressFill').style.width=((qIdx%tot+1)/tot*100)+'%';
+  document.getElementById('qCorrectLabel').textContent='✓ '+qC;
+  document.getElementById('qCounter').textContent=qT+' answered';
+  document.getElementById('quizScore').textContent='Score: '+qC+' / '+qT;
+  answered=false;
+}
+
+function selectAns(i){
+  if(answered)return;
+  answered=true;
+  var q=filtered[qIdx%filtered.length];
+  qT++;var ok=i===q.a;
+  if(ok){qC++;S.correct++;S.streak++;if(S.streak>S.bestStreak)S.bestStreak=S.streak;var xp=lvl==='a'?20:10;addXP(xp);showToast('+'+xp+' XP! 🎯','xp');}
+  else{S.streak=0;showToast('Incorrect — see explanation','error');}
+  document.querySelectorAll('.option-btn').forEach(function(btn,idx){
+    btn.disabled=true;
+    if(idx===q.a)btn.classList.add(ok&&idx===i?'correct':'reveal-correct');
+    if(!ok&&idx===i)btn.classList.add('wrong');
+  });
+  var ex=document.getElementById('explanationDiv');
+  ex.innerHTML='<strong>'+(ok?'✓ Correct!':'✗ Incorrect')+'</strong> '+q.e;
+  ex.className='explanation show';
+  document.getElementById('nextBtn').style.display='inline-flex';
+  document.getElementById('quizScore').textContent='Score: '+qC+' / '+qT;
+  saveS();checkAch();
+}
+
+function nextQuestion(){qIdx++;renderQ();}
+function skipQuestion(){qIdx++;filtered=getFiltered();renderQ();}
+
+// ===== FLASHCARDS =====
+var fcSet='core',fcIdx=0,fcFlipped=false;
+
+function setFCSet(s,btn){
+  fcSet=s;fcIdx=0;fcFlipped=false;
+  document.querySelectorAll('.level-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');renderFC();
+}
+
+function renderFC(){
+  var cards=FC[fcSet],card=cards[fcIdx];
+  document.getElementById('fcFront').textContent=card.f;
+  document.getElementById('fcBack').textContent=card.b;
+  document.getElementById('flashcard').classList.remove('flipped');
+  fcFlipped=false;
+  document.getElementById('fcHint').textContent='Tap to reveal answer';
+  document.getElementById('fcCounter').textContent=(fcIdx+1)+' / '+cards.length;
+}
+
+function flipCard(){
+  fcFlipped=!fcFlipped;
+  document.getElementById('flashcard').classList.toggle('flipped',fcFlipped);
+  document.getElementById('fcHint').textContent=fcFlipped?'Tap to flip back':'Tap to reveal answer';
+  if(fcFlipped)addXP(2);
+}
+
+function nextFC(){var c=FC[fcSet];fcIdx=(fcIdx+1)%c.length;renderFC();}
+function prevFC(){var c=FC[fcSet];fcIdx=(fcIdx-1+c.length)%c.length;renderFC();}
+
+// ===== XP & RANK =====
+var ranks=[{n:'🩺 Intern',m:0},{n:'📋 R1 Resident',m:100},{n:'📷 R2 Resident',m:300},{n:'🔬 R3 Resident',m:600},{n:'💊 Fellow',m:1000},{n:'🏥 Attending',m:1500},{n:'🩻 Contrast Expert',m:2500}];
+
+function addXP(amt){S.xp+=amt;updateUI();}
+
+function updateUI(){
+  var rank=ranks[0],next=null;
+  for(var i=ranks.length-1;i>=0;i--){if(S.xp>=ranks[i].m){rank=ranks[i];if(i+1<ranks.length)next=ranks[i+1];break;}}
+  document.getElementById('rankBadge').textContent=rank.n;
+  document.getElementById('xpLabel').textContent=S.xp+' XP';
+  var pct=next?Math.min(100,(S.xp-rank.m)/(next.m-rank.m)*100):100;
+  document.getElementById('xpFill').style.width=pct+'%';
+  document.getElementById('streakBadge').textContent='🔥 '+S.streak;
+  document.getElementById('statXP').textContent=S.xp;
+  document.getElementById('statCorrect').textContent=S.correct;
+  document.getElementById('statStreak').textContent=S.bestStreak;
+}
+
+// ===== CHAPTERS =====
+function toggleCh(btn){
+  btn.classList.toggle('open');
+  var body=btn.nextElementSibling;
+  body.classList.toggle('open');
+  if(body.classList.contains('open'))addXP(5);
+}
+
+// ===== TABS =====
+function showTab(id,btn){
+  document.querySelectorAll('.content').forEach(function(c){c.classList.remove('active');});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='quiz'){filtered=getFiltered();renderQ();}
+  if(id==='flashcards')renderFC();
+  if(id==='achievements')renderAch();
+}
+
+// ===== ACHIEVEMENTS =====
+var achDefs=[
+  {id:'first_q',name:'First Step',desc:'Answer your first question',icon:'🎯',cond:function(){return qT>=1;}},
+  {id:'streak5',name:'On a Roll',desc:'5-question streak',icon:'🔥',cond:function(){return S.bestStreak>=5;}},
+  {id:'streak10',name:'Hot Streak',desc:'10-question streak',icon:'🔥🔥',cond:function(){return S.bestStreak>=10;}},
+  {id:'streak20',name:'Unstoppable',desc:'20-question streak',icon:'⚡',cond:function(){return S.bestStreak>=20;}},
+  {id:'xp100',name:'Getting Serious',desc:'Earn 100 XP',icon:'⭐',cond:function(){return S.xp>=100;}},
+  {id:'xp500',name:'Contrast Scholar',desc:'Earn 500 XP',icon:'💫',cond:function(){return S.xp>=500;}},
+  {id:'xp1000',name:'Radiology Scholar',desc:'Earn 1000 XP',icon:'🏆',cond:function(){return S.xp>=1000;}},
+  {id:'xp2500',name:'Contrast Expert',desc:'Earn 2500 XP — top rank!',icon:'🩻',cond:function(){return S.xp>=2500;}},
+  {id:'correct10',name:'Consistent',desc:'10 correct answers',icon:'✅',cond:function(){return S.correct>=10;}},
+  {id:'correct25',name:'Dedicated',desc:'25 correct answers',icon:'🌟',cond:function(){return S.correct>=25;}},
+  {id:'correct50',name:'Master Student',desc:'50 correct answers',icon:'🎓',cond:function(){return S.correct>=50;}},
+  {id:'adv_first',name:'Board Challenger',desc:'Answer an advanced question',icon:'🎓',cond:function(){return lvl==='a'&&qT>=1;}},
+  {id:'fc_flip',name:'Card Flipper',desc:'Review a flashcard',icon:'🃏',cond:function(){return S.xp>=2;}}
+];
+
+function checkAch(){
+  achDefs.forEach(function(ach){
+    if(!S.achievements.includes(ach.id)&&ach.cond()){
+      S.achievements.push(ach.id);
+      showToast('🏆 Achievement: '+ach.name+'!','');
+      saveS();
+    }
+  });
+  renderAch();
+}
+
+function renderAch(){
+  var html='';
+  achDefs.forEach(function(ach){
+    var earned=S.achievements.includes(ach.id);
+    html+='<div class="achievement '+(earned?'':'ach-locked')+'"><div class="ach-icon">'+ach.icon+'</div><div><div class="ach-name">'+ach.name+'</div><div class="ach-desc">'+ach.desc+'</div></div>'+(earned?'<div style="margin-left:auto;color:var(--green);font-size:.77rem;font-weight:700">EARNED</div>':'')+'</div>';
+  });
+  document.getElementById('achievementsDiv').innerHTML=html;
+}
+
+// ===== PROGRESS BARS =====
+var chNames=['Intro & Purpose','Patient Selection & Prep','Fasting Before Contrast','Safe Injection','Extravasation','Allergic & Physiologic Reactions','Contrast Media Warming','Post-Contrast AKI','Metformin','Pediatric CM + Ferumoxytol','GI Contrast (Adults)','Gadolinium Safety','NSF — 2025 Update','Ultrasound Contrast','Treatment/Pregnancy/BF'];
+function renderPBars(){
+  var html='';
+  chNames.forEach(function(ch,i){
+    var pct=Math.round(Math.min(100,(S.xp/2500)*100));
+    html+='<div class="progress-wrap"><div class="progress-label"><span>'+ch+'</span><span>'+pct+'%</span></div><div class="progress-bg"><div class="progress-fill" style="width:'+pct+'%"></div></div></div>';
+  });
+  document.getElementById('progressBars').innerHTML=html;
+}
+
+// ===== TOAST =====
+var toastT;
+function showToast(msg,type){
+  var t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast '+(type||'')+' show';
+  clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('show');},2500);
+}
+
+// ===== SAVE =====
+function saveS(){localStorage.setItem('acrCM26',JSON.stringify(S));}
+
+// ===== INIT =====
+window.onload=function(){
+  filtered=getFiltered();renderQ();renderFC();renderAch();renderPBars();updateUI();
+};
+</script>
+</body>
+</html>
